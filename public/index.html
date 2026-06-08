@@ -1,11 +1,888 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Mirarth</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mirarth IT Asset LLC - Wyoming-based IT asset disposition, electronics recycling and refurbishment services. Secure data destruction, certified recycling, and maximum value recovery.">
+<title>Mirarth IT Asset LLC | IT Asset Disposition & Electronics Recycling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0e1a;
+    --surface: #131826;
+    --surface-2: #1a2033;
+    --primary: #00d4aa;
+    --primary-dim: #00a884;
+    --accent: #4fc3f7;
+    --text: #e8eef5;
+    --muted: #8b9aae;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.15);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', 'Inter', sans-serif; line-height: 1.2; letter-spacing: -0.02em; }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Background gradient effects */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -20%;
+    right: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(79,195,247,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10,14,26,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #0a0e1a;
+    font-weight: 800;
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 14px; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    padding: 10px 20px;
+    background: var(--primary);
+    color: #0a0e1a !important;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--primary-dim); transform: translateY(-1px); }
+  .nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 24px; cursor: pointer; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+    z-index: 1;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(0,212,170,0.1);
+    border: 1px solid rgba(0,212,170,0.3);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .badge-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-size: clamp(36px, 5.5vw, 64px);
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .hero h1 .gradient {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 540px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #0a0e1a;
+  }
+  .btn-primary:hover { background: var(--primary-dim); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,212,170,0.3); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-secondary:hover { background: var(--surface); border-color: var(--primary); }
+
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 480px;
+    margin-left: auto;
+  }
+  .circuit {
+    position: absolute;
+    inset: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .circuit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,170,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,170,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .stat-card {
+    position: relative;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+  }
+  .stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* Sections */
+  section { padding: 100px 0; position: relative; z-index: 1; }
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 16px; }
+  .section-desc { font-size: 17px; color: var(--muted); max-width: 640px; margin: 0 auto; }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-text h2 { font-size: clamp(28px, 4vw, 42px); margin-bottom: 20px; }
+  .about-text p { color: var(--muted); margin-bottom: 16px; font-size: 16px; }
+  .about-points { list-style: none; margin-top: 28px; }
+  .about-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .check-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: rgba(0,212,170,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .about-visual {
+    background: linear-gradient(135deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .info-block {
+    text-align: center;
+    padding: 24px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .info-block .big {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .info-block .small { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+  /* Services */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-strong);
+    background: var(--surface-2);
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, rgba(0,212,170,0.15), rgba(79,195,247,0.15));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  .service-card h3 { font-size: 20px; margin-bottom: 12px; }
+  .service-card p { color: var(--muted); font-size: 15px; }
+
+  /* Process */
+  .process-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 60px 40px;
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    position: relative;
+  }
+  .step { position: relative; }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dim));
+    color: #0a0e1a;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .step h4 { font-size: 18px; margin-bottom: 10px; }
+  .step p { color: var(--muted); font-size: 14px; }
+
+  /* Why Us */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .why-item {
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: border-color 0.3s;
+  }
+  .why-item:hover { border-color: rgba(0,212,170,0.3); }
+  .why-item .icon-wrap {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: rgba(0,212,170,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 20px;
+  }
+  .why-item h4 { font-size: 16px; margin-bottom: 6px; }
+  .why-item p { color: var(--muted); font-size: 14px; }
+
+  /* Contact */
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    background: linear-gradient(135deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 60px;
+  }
+  .contact-info h2 { font-size: clamp(28px, 3.5vw, 38px); margin-bottom: 16px; }
+  .contact-info > p { color: var(--muted); margin-bottom: 36px; }
+  .contact-list { list-style: none; }
+  .contact-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .contact-list .icon-wrap {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    background: rgba(0,212,170,0.12);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 18px;
+  }
+  .contact-list .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .contact-list .value { color: var(--text); font-size: 15px; font-weight: 500; }
+  .contact-list .value a:hover { color: var(--primary); }
+
+  form { display: flex; flex-direction: column; gap: 18px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .field input, .field textarea, .field select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(0,212,170,0.05);
+  }
+  .field textarea { resize: vertical; min-height: 110px; }
+  .form-note { font-size: 12px; color: var(--muted); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 50px 0 30px;
+    position: relative;
+    z-index: 1;
+    margin-top: 60px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-brand p { color: var(--muted); font-size: 14px; margin-top: 16px; max-width: 320px; }
+  .footer-col h5 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { color: var(--muted); font-size: 14px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--primary); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border); gap: 20px; }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: block; }
+    .hero-grid, .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
+    .hero-visual { max-width: 100%; margin: 0; }
+    .contact-wrapper { padding: 36px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    section { padding: 70px 0; }
+  }
+  @media (max-width: 500px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .about-visual { grid-template-columns: 1fr; }
+    .process-wrapper { padding: 36px 20px; }
+  }
+</style>
 </head>
 <body>
-    <h1>Welcome to Mirarth.online!</h1>
-    <p>网站搭建成功！</p>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">M</span>
+      <span>Mirarth IT Asset</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="badge"><span class="badge-dot"></span> Wyoming-Based IT Asset Disposition</div>
+      <h1>Recover Value from <span class="gradient">Retired IT Assets</span></h1>
+      <p>Mirarth IT Asset LLC provides secure, compliant, and sustainable solutions for end-of-life electronics — from data destruction to refurbishment and recycling.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Request a Free Quote &rarr;</a>
+        <a href="#services" class="btn btn-secondary">Explore Services</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="circuit">
+        <div style="position: relative; z-index: 1;">
+          <div style="font-size: 13px; color: var(--muted); margin-bottom: 6px;">CERTIFIED PARTNER</div>
+          <div style="font-family: 'Space Grotesk'; font-size: 22px; font-weight: 600;">Responsible ITAD</div>
+        </div>
+        <div style="position: relative; z-index: 1;" class="stats-row">
+          <div class="stat-card">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Data Destruction Guarantee</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">Zero</div>
+            <div class="stat-label">Landfill Commitment</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">24h</div>
+            <div class="stat-label">Quote Turnaround</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">50+</div>
+            <div class="stat-label">Hardware Categories</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-text">
+      <span class="section-eyebrow">About Us</span>
+      <h2>Trusted IT Asset Disposition partner headquartered in Wyoming</h2>
+      <p>Mirarth IT Asset LLC is a Wyoming-registered company specializing in the responsible recycling, refurbishment, and resale of used enterprise and consumer electronics. We help businesses across the United States retire their IT hardware while maximizing recovered value and meeting strict data security standards.</p>
+      <p>Whether you're decommissioning a data center, refreshing fleet laptops, or clearing surplus inventory, our team handles every step — from secure pickup to detailed reporting.</p>
+      <ul class="about-points">
+        <li><span class="check-icon">&#10003;</span> Certified data destruction with chain-of-custody reporting</li>
+        <li><span class="check-icon">&#10003;</span> Maximum value recovery through testing and refurbishment</li>
+        <li><span class="check-icon">&#10003;</span> Environmentally responsible recycling, zero landfill policy</li>
+      </ul>
+    </div>
+    <div class="about-visual">
+      <div class="info-block">
+        <div class="big">WY</div>
+        <div class="small">Registered in the State of Wyoming, USA</div>
+      </div>
+      <div class="info-block">
+        <div class="big">ITAD</div>
+        <div class="small">Full-spectrum IT asset disposition</div>
+      </div>
+      <div class="info-block">
+        <div class="big">B2B</div>
+        <div class="small">Enterprise & SMB partnerships</div>
+      </div>
+      <div class="info-block">
+        <div class="big">ECO</div>
+        <div class="small">Sustainable circular economy focus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">What We Do</span>
+      <h2 class="section-title">End-to-End Hardware Lifecycle Services</h2>
+      <p class="section-desc">From pickup to final disposition, we manage the complete journey of your retired IT equipment with transparency and care.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">&#128190;</div>
+        <h3>Hardware Recycling</h3>
+        <p>R2 / e-Stewards aligned recycling for laptops, desktops, servers, networking gear, mobile devices, and accessories. Materials are recovered and reintroduced into the supply chain.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128274;</div>
+        <h3>Secure Data Destruction</h3>
+        <p>NIST 800-88 compliant data sanitization, including software wiping, degaussing, and physical shredding. Each device receives a Certificate of Destruction.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128295;</div>
+        <h3>Refurbishment & Resale</h3>
+        <p>Functional equipment is tested, cleaned, and refurbished to working condition, then resold through trusted secondary-market channels — returning value back to you.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128229;</div>
+        <h3>IT Asset Disposition</h3>
+        <p>Comprehensive ITAD programs for enterprises: on-site pickup, asset tagging, serialized inventory, financial settlement reporting, and audit-ready documentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="section-title">A Simple, Transparent Process</h2>
+      <p class="section-desc">Four straightforward steps from initial contact to final reporting.</p>
+    </div>
+    <div class="process-wrapper">
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Inventory & Quote</h4>
+          <p>Submit a list of equipment or describe what you'd like to retire. We respond within 24 hours with a transparent quote and pickup plan.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Secure Pickup</h4>
+          <p>We coordinate logistics nationwide. Equipment is tracked from the moment it leaves your facility under documented chain-of-custody.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Process & Sanitize</h4>
+          <p>Devices are sorted, tested, and either refurbished or dismantled for recycling. All storage media undergoes certified data destruction.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>Report & Settle</h4>
+          <p>You receive serialized inventory reports, Certificates of Destruction, environmental impact summaries, and any applicable value-recovery payment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Why Mirarth</span>
+      <h2 class="section-title">Built on Security, Sustainability, and Value</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="icon-wrap">&#128737;</div>
+        <div>
+          <h4>Data Security First</h4>
+          <p>Every device is treated as if it holds the most sensitive data. Chain-of-custody, audit logs, and certificates included.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap">&#127757;</div>
+        <div>
+          <h4>Sustainable by Design</h4>
+          <p>Reuse before recycle. We extend the life of working hardware to reduce environmental impact and electronic waste.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap">&#128176;</div>
+        <div>
+          <h4>Maximum Value Recovery</h4>
+          <p>Our refurbishment and global resale network ensures you capture the highest possible return on your retired assets.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap">&#128221;</div>
+        <div>
+          <h4>Compliance & Reporting</h4>
+          <p>Detailed documentation supports your internal audits, HIPAA, GLBA, SOX, and environmental compliance requirements.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap">&#128640;</div>
+        <div>
+          <h4>Nationwide Logistics</h4>
+          <p>Pickup services across the contiguous United States with flexible scheduling for projects of any size.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="icon-wrap">&#128172;</div>
+        <div>
+          <h4>Responsive Support</h4>
+          <p>Dedicated point of contact from quote to final settlement. Real people, real fast responses.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <span class="section-eyebrow">Get in Touch</span>
+        <h2>Ready to retire your IT assets responsibly?</h2>
+        <p>Tell us about your equipment and we'll send a no-obligation quote within one business day.</p>
+        <ul class="contact-list">
+          <li>
+            <div class="icon-wrap">&#9993;</div>
+            <div>
+              <div class="label">Email</div>
+              <div class="value"><a href="mailto:joysulen@hotmail.com">joysulen@hotmail.com</a></div>
+            </div>
+          </li>
+          <li>
+            <div class="icon-wrap">&#9742;</div>
+            <div>
+              <div class="label">Daytime Phone</div>
+              <div class="value"><a href="tel:+12065715406">(206) 571-5406</a></div>
+            </div>
+          </li>
+          <li>
+            <div class="icon-wrap">&#127968;</div>
+            <div>
+              <div class="label">Registered Office</div>
+              <div class="value">30 N Gould St, Ste R<br>Sheridan, WY 82801, USA</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" required>
+          </div>
+          <div class="field">
+            <label for="company">Company</label>
+            <input id="company" type="text">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel">
+          </div>
+        </div>
+        <div class="field">
+          <label for="service">Service Interested In</label>
+          <select id="service">
+            <option>Hardware Recycling</option>
+            <option>Data Destruction</option>
+            <option>Refurbishment & Resale</option>
+            <option>Full ITAD Program</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Tell us about your equipment</label>
+          <textarea id="message" placeholder="Approximate quantity, types of devices, timeline, location..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="justify-content: center;">Send Inquiry &rarr;</button>
+        <p class="form-note">By submitting you agree to be contacted regarding your inquiry. We never share your information.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-mark">M</span>
+          <span>Mirarth IT Asset</span>
+        </div>
+        <p>Wyoming-based IT asset disposition and electronics recycling services. Secure. Sustainable. Profitable.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Hardware Recycling</a></li>
+          <li><a href="#services">Data Destruction</a></li>
+          <li><a href="#services">Refurbishment</a></li>
+          <li><a href="#services">ITAD Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:joysulen@hotmail.com">joysulen@hotmail.com</a></li>
+          <li><a href="tel:+12065715406">(206) 571-5406</a></li>
+          <li>Sheridan, WY 82801</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; <span id="year"></span> Mirarth IT Asset LLC. All rights reserved.</div>
+      <div>Registered in the State of Wyoming, USA</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const company = document.getElementById('company').value;
+    const phone = document.getElementById('phone').value;
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent('Inquiry from ' + name + ' - ' + service);
+    const body = encodeURIComponent(
+      'Name: ' + name + '\n' +
+      'Company: ' + company + '\n' +
+      'Email: ' + email + '\n' +
+      'Phone: ' + phone + '\n' +
+      'Service: ' + service + '\n\n' +
+      'Message:\n' + message
+    );
+    window.location.href = 'mailto:joysulen@hotmail.com?subject=' + subject + '&body=' + body;
+  }
+</script>
+
 </body>
 </html>

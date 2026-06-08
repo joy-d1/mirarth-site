@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A practical walk-through of the three sanitization categories defined by NIST SP 800-88 Rev. 1 — Clear, Purge, and Destroy — and how to choose between them.">
+<title>NIST SP 800-88r1 Sanitization Methods Explained | Mirarth IT Asset</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@300,400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="/assets/article.css">
+</head>
+<body>
+
+<div class="topbar">
+  Now accepting Q1 2026 enterprise ITAD program bookings. <a href="/#contact">Reserve capacity →</a>
+</div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand">
+      <span class="brand-mark">M</span>
+      <span>Mirarth IT Asset</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#industries">Industries</a></li>
+      <li><a href="/#platform">Platform</a></li>
+      <li><a href="/#process">Process</a></li>
+      <li><a href="/#insights">Resources</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="/#contact" class="btn btn-outline">Sign In</a>
+      <a href="/#contact" class="btn btn-primary">Talk to Sales <i class="ph ph-arrow-right"></i></a>
+      <button class="nav-toggle" id="navToggle"><i class="ph ph-list"></i></button>
+    </div>
+  </div>
+</nav>
+
+<section class="article-hero">
+  <div class="container-narrow">
+    <a href="/#insights" class="breadcrumb"><i class="ph ph-arrow-left"></i> Back to Insights</a>
+    <span class="eyebrow">Standards</span>
+    <h1>NIST SP 800-88r1 Explained: Clear, Purge, and Destroy</h1>
+    <p class="lede">Every conversation about data sanitization eventually circles back to the same federal publication. Here is a plain-language walk-through of the three categories NIST defines, and the framework for choosing the right one without overspending or under-protecting.</p>
+    <div class="article-meta">
+      <span><i class="ph ph-buildings" style="vertical-align:middle;"></i> Mirarth IT Asset</span>
+      <span class="dot">·</span>
+      <span>10 min read</span>
+      <span class="dot">·</span>
+      <span>Standards &amp; Compliance</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-cover">
+  <div class="cover-inner dark"><i class="ph ph-eraser"></i></div>
+</div>
+
+<div class="container">
+  <div class="article-layout">
+    <aside class="article-aside">
+      <div class="toc-title">On this page</div>
+      <ul class="toc-list">
+        <li><a href="#background">Why NIST 800-88 became the reference</a></li>
+        <li><a href="#three-categories">The three categories at a glance</a></li>
+        <li><a href="#clear">Clear: a logical reset</a></li>
+        <li><a href="#purge">Purge: defense against lab recovery</a></li>
+        <li><a href="#destroy">Destroy: physical irreversibility</a></li>
+        <li><a href="#decision">Choosing the right category</a></li>
+        <li><a href="#verification">Verification and documentation</a></li>
+        <li><a href="#common-mistakes">Common mistakes</a></li>
+      </ul>
+    </aside>
+
+    <article class="article-body">
+      <h2 id="background">Why NIST 800-88 became the reference</h2>
+      <p>For many years, the default benchmark for media sanitization in U.S. government and enterprise environments was DoD 5220.22-M, a manual that prescribed multiple-pass overwrite patterns for magnetic media. That approach made sense for the technology of the time, but it aged poorly. Modern flash storage does not behave like a spinning platter, and a three-pass overwrite is the wrong tool for an SSD.</p>
+      <p>NIST Special Publication 800-88 was first issued in 2006 specifically to replace technology-locked prescriptions with a framework that scales across media types. The current revision, <strong>SP 800-88 Rev. 1</strong>, published in December 2014, defines the categories and verification practices that most U.S. enterprises, federal contractors, healthcare organizations, and financial institutions now reference in their data destruction policies. When an auditor asks how you sanitize storage, the answer they want to hear cites this document.</p>
+
+      <h2 id="three-categories">The three categories at a glance</h2>
+      <p>NIST 800-88r1 defines three sanitization categories, in increasing order of confidence:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Protects against</th>
+            <th>Allows reuse?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Clear</strong></td>
+            <td>Keyboard-level data recovery (simple software tools)</td>
+            <td>Yes — within trusted environments</td>
+          </tr>
+          <tr>
+            <td><strong>Purge</strong></td>
+            <td>Laboratory recovery attempts with specialized tools</td>
+            <td>Yes — including resale or external transfer</td>
+          </tr>
+          <tr>
+            <td><strong>Destroy</strong></td>
+            <td>Any future recovery, by any technique</td>
+            <td>No — the media is rendered unusable</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>The categories describe the <em>outcome</em>, not a specific technique. Several techniques may satisfy each category depending on the type of media. We will look at each in turn.</p>
+
+      <h2 id="clear">Clear: a logical reset</h2>
+      <p>The Clear category covers methods that protect against straightforward data recovery using standard system tools. The classic example is overwriting every logical sector of a drive with a fixed pattern. After a successful Clear, no normal file recovery utility can reconstruct the original data — but a well-equipped forensics lab might still extract residual signals from the underlying media.</p>
+      <p>Clear is appropriate when:</p>
+      <ul>
+        <li>The data is non-sensitive or already public.</li>
+        <li>The device will be reused inside the same trust boundary (for example, redeployed to a different employee within your organization).</li>
+        <li>Speed and reversibility matter and the data classification permits it.</li>
+      </ul>
+      <p>Clear is not appropriate when the device will leave your custody, when it carries regulated data, or when the cost of a breach outweighs the cost of moving up to Purge.</p>
+
+      <h2 id="purge">Purge: defense against lab recovery</h2>
+      <p>The Purge category covers methods that render data infeasible to recover even with state-of-the-art laboratory techniques. This is the level required when a device is leaving organizational control but retains residual resale value.</p>
+      <p>The specific Purge techniques vary by media type:</p>
+      <h3>For hard disk drives</h3>
+      <p>Degaussing — exposure to a strong magnetic field that disrupts the magnetic domains on the platters — is a NIST-recognized Purge technique. A successful degauss renders the drive both unrecoverable and unusable, so this method effectively crosses over into Destroy in practice. The drive's ATA Secure Erase command is also recognized when supported and verified.</p>
+      <h3>For SSDs and NVMe drives</h3>
+      <p>The drive's built-in sanitize command — issued via ATA Sanitize, NVMe Format, or vendor utility — is the preferred Purge technique because it can reach the over-provisioned and reserved cells that a host-issued overwrite cannot touch. Cryptographic Erase, where the drive's internal media encryption key is destroyed, is also accepted as Purge when the drive is a self-encrypting drive and the operation is properly verified.</p>
+      <h3>For mobile devices</h3>
+      <p>Vendor-supplied factory reset operations that destroy the device's encryption key are recognized as Cryptographic Erase, satisfying Purge for modern iOS and Android devices that encrypt by default.</p>
+      <div class="callout">
+        <strong>About Cryptographic Erase</strong>
+        Cryptographic Erase is fast, scalable, and elegant — but only as strong as the encryption it relies on. It requires that the data was encrypted from the start with a well-implemented scheme, and that the key destruction itself is verifiable. It is not a magic shortcut you can apply to a drive that was never encrypted.
+      </div>
+
+      <h2 id="destroy">Destroy: physical irreversibility</h2>
+      <p>The Destroy category covers methods that render the storage media itself unrecoverable — and unusable. Disintegration, pulverization, melting, incineration, and shredding all fall here. The media physically cannot be read again because, structurally, there is no media left to read.</p>
+      <p>Destroy is appropriate when:</p>
+      <ul>
+        <li>The data is highly sensitive and the risk of any recovery is unacceptable.</li>
+        <li>The device has reached end of life and has no residual value.</li>
+        <li>Regulatory or contractual requirements specifically mandate physical destruction.</li>
+        <li>The drive has failed and cannot be reliably sanitized via Purge methods.</li>
+      </ul>
+      <p>For shredding, particle size matters. Industry practice for flash media calls for substantially smaller particle sizes than for spinning disks, because flash chips can retain readable data in surprisingly small fragments. A serious vendor will publish the shred size their equipment achieves.</p>
+
+      <h2 id="decision">Choosing the right category</h2>
+      <p>The right category is a function of two variables: the sensitivity of the data on the device, and what happens to the device next. NIST presents this as a decision flow that, simplified, looks like this:</p>
+      <ol>
+        <li><strong>Is the data low-sensitivity and staying inside your trust boundary?</strong> Clear is acceptable.</li>
+        <li><strong>Is the data moderate-to-high sensitivity, or is the device leaving your control with residual value?</strong> Purge is required.</li>
+        <li><strong>Is the data highly sensitive, or is the device end-of-life with no resale plan?</strong> Destroy.</li>
+      </ol>
+      <p>The temptation in many organizations is to default to Destroy for everything, on the theory that more is always better. This is sometimes the right answer, but it forfeits the residual value of working hardware and produces avoidable e-waste. Purge — properly executed and verified — provides equivalent confidence for sensitive data while preserving the option to remarket the device.</p>
+
+      <h2 id="verification">Verification and documentation</h2>
+      <p>NIST 800-88r1 is explicit that sanitization without verification is not sanitization. For each device sanitized, you should be able to produce:</p>
+      <ul>
+        <li>The serial number and manufacturer of the device and its storage media.</li>
+        <li>The sanitization category and specific technique applied.</li>
+        <li>The result of the verification step (sampling, full read-back, or vendor command confirmation).</li>
+        <li>The date, location, and person or system responsible.</li>
+      </ul>
+      <p>This is what the Certificate of Destruction in a serious ITAD program is documenting. It is not a marketing flourish — it is the audit evidence that your sanitization actually happened, on the specific drive whose serial number is on the document.</p>
+
+      <h2 id="common-mistakes">Common mistakes</h2>
+      <p>A few patterns we see in conversations with new clients:</p>
+      <h3>Applying HDD overwrite logic to SSDs</h3>
+      <p>A multi-pass overwrite is unnecessary for an SSD and may not even be effective, since the controller decides where writes land. SSDs need the native sanitize command or Cryptographic Erase.</p>
+      <h3>Trusting a quick format</h3>
+      <p>A standard operating system format clears the file system index but leaves the underlying data in place. It does not satisfy any NIST category.</p>
+      <h3>Skipping verification</h3>
+      <p>"We ran the tool" is not a sanitization record. The tool can fail silently. Verification — even sampled — is the difference between sanitization and hope.</p>
+      <h3>Treating destruction as automatically more secure than Purge</h3>
+      <p>A poorly-controlled shredding process performed without chain-of-custody is less secure than a verified Cryptographic Erase performed under audit. The category matters less than the discipline.</p>
+
+      <hr>
+
+      <div class="callout">
+        <strong>About Mirarth IT Asset</strong>
+        Mirarth's data sanitization workflow follows NIST SP 800-88r1 across every device class we process, with the appropriate category and technique selected per device and verified before disposition. Each device receives a serialized certificate naming the media and method used. <a href="/#contact">Talk to us</a> about your sanitization requirements.
+      </div>
+    </article>
+  </div>
+</div>
+
+<section class="related">
+  <div class="container">
+    <div class="related-head">
+      <h2>Continue reading</h2>
+      <p>More practical guidance for IT, security, and compliance leaders managing IT asset disposition.</p>
+    </div>
+    <div class="related-grid">
+      <a href="/blog/r2-certification.html" class="related-card">
+        <div class="related-cover"><i class="ph ph-certificate"></i></div>
+        <div class="related-body">
+          <div class="related-cat">Compliance</div>
+          <h4>Understanding R2v3 certification and why it matters</h4>
+          <span class="related-link">Read article <i class="ph ph-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="/blog/where-data-is-stored.html" class="related-card">
+        <div class="related-cover alt-1"><i class="ph ph-hard-drives"></i></div>
+        <div class="related-body">
+          <div class="related-cat">Data Security</div>
+          <h4>Where your data actually lives: volatile vs persistent memory</h4>
+          <span class="related-link">Read article <i class="ph ph-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="/#contact" class="related-card">
+        <div class="related-cover alt-2"><i class="ph ph-chat-circle-text"></i></div>
+        <div class="related-body">
+          <div class="related-cat">Get Started</div>
+          <h4>Design a certified ITAD program for your organization</h4>
+          <span class="related-link">Talk to sales <i class="ph ph-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container final-cta-inner">
+    <span class="eyebrow">Ready to start</span>
+    <h2>Put these insights into action.</h2>
+    <p>Discuss how Mirarth's certified processes can protect your data, satisfy your auditors, and streamline your IT asset disposition.</p>
+    <div class="cta-actions">
+      <a href="/#contact" class="btn btn-primary">Schedule a Consultation <i class="ph ph-arrow-right"></i></a>
+      <a href="/#process" class="btn btn-outline">View Our Process</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand">
+          <span class="brand-mark">M</span>
+          <span>Mirarth IT Asset</span>
+        </a>
+        <p>Wyoming-based IT asset disposition, certified data destruction, electronics recycling, and remarketing. Secure. Sustainable. Verified.</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul>
+        <li><a href="/#services">ITAD Program</a></li>
+        <li><a href="/#services">Data Destruction</a></li>
+        <li><a href="/#services">Asset Recovery</a></li>
+        <li><a href="/#services">Secure Logistics</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Platform</h5><ul>
+        <li><a href="/#platform">Client Portal</a></li>
+        <li><a href="/#process">Process</a></li>
+        <li><a href="/#industries">Industries</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Resources</h5><ul>
+        <li><a href="/#insights">Insights</a></li>
+        <li><a href="/blog/r2-certification.html">R2v3 Explained</a></li>
+        <li><a href="/blog/nist-800-88-methods.html">NIST 800-88 Methods</a></li>
+        <li><a href="/blog/where-data-is-stored.html">Where Data Lives</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul>
+        <li><a href="mailto:joysulen@hotmail.com">joysulen@hotmail.com</a></li>
+        <li><a href="tel:+12065715406">(206) 571-5406</a></li>
+        <li>Sheridan, WY 82801</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; <span id="year"></span> Mirarth IT Asset LLC. All rights reserved.</div>
+      <div>Registered in the State of Wyoming, USA</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  if (toggle) {
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  }
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const headings = document.querySelectorAll('.article-body h2');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const id = e.target.id;
+        const active = document.querySelector('.toc-list a[href="#' + id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-100px 0px -70% 0px' });
+  headings.forEach(h => obs.observe(h));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A clear primer on volatile vs persistent memory — what disappears at power-off, what survives, and which surfaces a serious sanitization program needs to cover.">
+<title>Where Your Data Actually Lives | Mirarth IT Asset</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@300,400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="/assets/article.css">
+</head>
+<body>
+
+<div class="topbar">
+  Now accepting Q1 2026 enterprise ITAD program bookings. <a href="/#contact">Reserve capacity →</a>
+</div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand">
+      <span class="brand-mark">M</span>
+      <span>Mirarth IT Asset</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#industries">Industries</a></li>
+      <li><a href="/#platform">Platform</a></li>
+      <li><a href="/#process">Process</a></li>
+      <li><a href="/#insights">Resources</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="/#contact" class="btn btn-outline">Sign In</a>
+      <a href="/#contact" class="btn btn-primary">Talk to Sales <i class="ph ph-arrow-right"></i></a>
+      <button class="nav-toggle" id="navToggle"><i class="ph ph-list"></i></button>
+    </div>
+  </div>
+</nav>
+
+<section class="article-hero">
+  <div class="container-narrow">
+    <a href="/#insights" class="breadcrumb"><i class="ph ph-arrow-left"></i> Back to Insights</a>
+    <span class="eyebrow">Data Security</span>
+    <h1>Where Your Data Actually Lives: A Primer on Volatile and Persistent Memory</h1>
+    <p class="lede">"Did you wipe the RAM?" is one of the most common questions we hear from security teams. It is also one of the easiest to answer — but the question that should be asked instead is much more interesting.</p>
+    <div class="article-meta">
+      <span><i class="ph ph-buildings" style="vertical-align:middle;"></i> Mirarth IT Asset</span>
+      <span class="dot">·</span>
+      <span>8 min read</span>
+      <span class="dot">·</span>
+      <span>Data Security</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-cover">
+  <div class="cover-inner mid"><i class="ph ph-hard-drives"></i></div>
+</div>
+
+<div class="container">
+  <div class="article-layout">
+    <aside class="article-aside">
+      <div class="toc-title">On this page</div>
+      <ul class="toc-list">
+        <li><a href="#the-question">The question we keep hearing</a></li>
+        <li><a href="#volatile">Volatile memory: gone at power-off</a></li>
+        <li><a href="#persistent">Persistent storage: what survives</a></li>
+        <li><a href="#hidden">The places people forget</a></li>
+        <li><a href="#why-it-matters">Why this matters for sanitization</a></li>
+        <li><a href="#vendor-checklist">What a serious vendor covers</a></li>
+      </ul>
+    </aside>
+
+    <article class="article-body">
+      <h2 id="the-question">The question we keep hearing</h2>
+      <p>"Can you certify that the RAM in our laptops has been wiped?"</p>
+      <p>The short answer is yes — and so can you. Unplug the laptop and walk away for a minute. RAM is wiped. Done.</p>
+      <p>The longer answer is that the question itself reveals a common misunderstanding about how modern computers store information. RAM is not the place security teams need to worry about. The places they <em>should</em> worry about are the ones nobody asks us about. So let us walk through where data actually lives inside the equipment you are retiring, and what it takes to make sure the sensitive pieces are properly removed.</p>
+
+      <h2 id="volatile">Volatile memory: gone at power-off</h2>
+      <p>Volatile memory is any storage that requires continuous power to retain its contents. Cut the power, the bits decay within seconds to minutes, and whatever was there is gone. The major examples inside the hardware you handle every day:</p>
+      <ul>
+        <li><strong>System RAM (DDR4, DDR5)</strong> — the main working memory used by the operating system and applications.</li>
+        <li><strong>GPU memory (GDDR, HBM)</strong> — the dedicated framebuffer and compute memory on a discrete graphics card.</li>
+        <li><strong>CPU caches (L1, L2, L3)</strong> — small high-speed buffers built into the processor.</li>
+        <li><strong>Network device buffers</strong> — short-lived packet queues inside switches, NICs, and routers.</li>
+      </ul>
+      <p>All of this is wiped by the simple act of disconnecting power. There is no sanitization step required, no software tool to run, no certificate to issue. A laptop that has been unplugged with its battery removed for thirty seconds has volatile memory that contains nothing recoverable.</p>
+      <div class="callout">
+        <strong>Exception worth knowing</strong>
+        A handful of academic attacks (cold-boot attacks) have demonstrated that DRAM cells can retain a partial state for tens of seconds at room temperature, and longer if chilled. These attacks are real but extremely narrow in scope, require physical access while the machine is still warm, and are not a concern for normal end-of-life processing.
+      </div>
+
+      <h2 id="persistent">Persistent storage: what survives</h2>
+      <p>Persistent storage is the opposite: the bits remain whether the power is on or off. This is where the actual data sanitization work happens. The categories you will encounter on enterprise hardware:</p>
+      <ul>
+        <li><strong>Hard disk drives (HDD)</strong> — magnetic platters. Older but still common in storage arrays.</li>
+        <li><strong>Solid-state drives (SATA, SAS SSDs)</strong> — flash memory packaged in a 2.5" form factor.</li>
+        <li><strong>NVMe drives (M.2, U.2)</strong> — flash memory connected directly to the PCIe bus.</li>
+        <li><strong>eMMC and UFS storage</strong> — flash soldered onto the system board in thin laptops, tablets, and smartphones.</li>
+        <li><strong>Tape media</strong> — LTO cartridges used for archival backups.</li>
+      </ul>
+      <p>These are the surfaces that require deliberate sanitization. A drive that has been powered off retains every byte of its contents until those bytes are overwritten, cryptographically erased, or the medium is physically destroyed. Pulling the power does nothing to protect the data on a hard drive.</p>
+
+      <h2 id="hidden">The places people forget</h2>
+      <p>This is the part of the conversation that usually surprises people. Persistent storage is not limited to the obvious drives. Modern hardware contains many small persistent regions that are easy to overlook:</p>
+      <h3>BIOS / UEFI firmware</h3>
+      <p>Stored in a small flash chip on the motherboard. Holds boot settings and sometimes configuration data — including, in some enterprise deployments, embedded credentials for management interfaces.</p>
+      <h3>Baseboard management controllers</h3>
+      <p>Servers contain a separate management processor (iDRAC, iLO, IPMI) with its own flash storage holding network configuration, user accounts, and SSL certificates. Wiping the host operating system does nothing to this.</p>
+      <h3>Network device configurations</h3>
+      <p>Switches and routers retain their running configuration — including ACLs, VLAN assignments, SNMP community strings, and sometimes credentials — in onboard flash. Powering them down preserves all of it.</p>
+      <h3>SSD over-provisioning regions</h3>
+      <p>SSDs reserve a portion of their flash for wear-leveling and bad-block replacement. Data written to the drive may end up in cells that are no longer addressable by the operating system. A simple block-level overwrite cannot guarantee these regions are touched, which is why SSDs require either the drive's own sanitize command or cryptographic erase.</p>
+      <h3>HPA and DCO regions on HDDs</h3>
+      <p>Older hard drives can have hidden areas — Host Protected Area and Device Configuration Overlay — that are not visible to the operating system but can contain data. Proper sanitization tools detect and address these.</p>
+      <h3>Multifunction printer hard drives</h3>
+      <p>Easily forgotten. Enterprise copiers and printers often contain a hard drive that caches every scanned, printed, and faxed document. They need to be sanitized before disposal just like a server.</p>
+
+      <h2 id="why-it-matters">Why this matters for sanitization</h2>
+      <p>If your mental model of "wipe the data" stops at the visible C: drive, you have a gap. A device that has had its primary storage drive wiped may still contain recoverable information in any of the surfaces above. Whether this matters depends on what kind of data your organization handles — but for regulated environments (healthcare, finance, defense, government), it matters a great deal.</p>
+      <p>The standard most enterprises use to address this is <a href="/blog/nist-800-88-methods.html">NIST SP 800-88r1</a>, which defines the recognized techniques and categories of media sanitization. A serious sanitization program does not just run a wipe utility on the boot drive and call it done. It inventories every persistent surface inside the device and applies an appropriate method to each.</p>
+
+      <h2 id="vendor-checklist">What a serious vendor covers</h2>
+      <p>When you evaluate an ITAD partner, the questions worth asking are not about RAM. They are:</p>
+      <ol>
+        <li>Does the workflow identify every persistent storage surface on each device class you send (servers, laptops, switches, MFPs)?</li>
+        <li>Are SSDs sanitized using the drive's native sanitize command or cryptographic erase, not block-level overwrite alone?</li>
+        <li>Are baseboard management controllers and BIOS settings reset on servers?</li>
+        <li>Are network device configurations cleared before resale or recycling?</li>
+        <li>Do you receive a per-device certificate that names the specific storage media sanitized and the method used?</li>
+      </ol>
+      <p>The answer to "did you wipe my RAM?" should always be yes, accompanied by a small, polite explanation of why the more important questions are the ones above.</p>
+
+      <hr>
+
+      <div class="callout">
+        <strong>About Mirarth IT Asset</strong>
+        Mirarth's sanitization workflow follows NIST SP 800-88r1 guidance for every persistent storage surface on the devices we process — including the easily-forgotten ones. Each device receives a serialized Certificate of Destruction recording the specific media and method. <a href="/#contact">Talk to us</a> about your data sanitization requirements.
+      </div>
+    </article>
+  </div>
+</div>
+
+<section class="related">
+  <div class="container">
+    <div class="related-head">
+      <h2>Continue reading</h2>
+      <p>More practical guidance for IT, security, and compliance leaders managing IT asset disposition.</p>
+    </div>
+    <div class="related-grid">
+      <a href="/blog/r2-certification.html" class="related-card">
+        <div class="related-cover"><i class="ph ph-certificate"></i></div>
+        <div class="related-body">
+          <div class="related-cat">Compliance</div>
+          <h4>Understanding R2v3 certification and why it matters</h4>
+          <span class="related-link">Read article <i class="ph ph-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="/blog/nist-800-88-methods.html" class="related-card">
+        <div class="related-cover alt-2"><i class="ph ph-eraser"></i></div>
+        <div class="related-body">
+          <div class="related-cat">Standards</div>
+          <h4>NIST SP 800-88r1 sanitization categories: Clear, Purge, Destroy</h4>
+          <span class="related-link">Read article <i class="ph ph-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="/#contact" class="related-card">
+        <div class="related-cover alt-1"><i class="ph ph-chat-circle-text"></i></div>
+        <div class="related-body">
+          <div class="related-cat">Get Started</div>
+          <h4>Design a certified ITAD program for your organization</h4>
+          <span class="related-link">Talk to sales <i class="ph ph-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container final-cta-inner">
+    <span class="eyebrow">Ready to start</span>
+    <h2>Put these insights into action.</h2>
+    <p>Discuss how Mirarth's certified processes can protect your data, satisfy your auditors, and streamline your IT asset disposition.</p>
+    <div class="cta-actions">
+      <a href="/#contact" class="btn btn-primary">Schedule a Consultation <i class="ph ph-arrow-right"></i></a>
+      <a href="/#process" class="btn btn-outline">View Our Process</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="brand">
+          <span class="brand-mark">M</span>
+          <span>Mirarth IT Asset</span>
+        </a>
+        <p>Wyoming-based IT asset disposition, certified data destruction, electronics recycling, and remarketing. Secure. Sustainable. Verified.</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul>
+        <li><a href="/#services">ITAD Program</a></li>
+        <li><a href="/#services">Data Destruction</a></li>
+        <li><a href="/#services">Asset Recovery</a></li>
+        <li><a href="/#services">Secure Logistics</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Platform</h5><ul>
+        <li><a href="/#platform">Client Portal</a></li>
+        <li><a href="/#process">Process</a></li>
+        <li><a href="/#industries">Industries</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Resources</h5><ul>
+        <li><a href="/#insights">Insights</a></li>
+        <li><a href="/blog/r2-certification.html">R2v3 Explained</a></li>
+        <li><a href="/blog/nist-800-88-methods.html">NIST 800-88 Methods</a></li>
+        <li><a href="/blog/where-data-is-stored.html">Where Data Lives</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul>
+        <li><a href="mailto:joysulen@hotmail.com">joysulen@hotmail.com</a></li>
+        <li><a href="tel:+12065715406">(206) 571-5406</a></li>
+        <li>Sheridan, WY 82801</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; <span id="year"></span> Mirarth IT Asset LLC. All rights reserved.</div>
+      <div>Registered in the State of Wyoming, USA</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  if (toggle) {
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  }
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const headings = document.querySelectorAll('.article-body h2');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const id = e.target.id;
+        const active = document.querySelector('.toc-list a[href="#' + id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-100px 0px -70% 0px' });
+  headings.forEach(h => obs.observe(h));
+</script>
+
+</body>
+</html>

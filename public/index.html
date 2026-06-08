@@ -3,581 +3,1201 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Mirarth IT Asset LLC - Wyoming-based IT asset disposition, electronics recycling and refurbishment services. Secure data destruction, certified recycling, and maximum value recovery.">
-<title>Mirarth IT Asset LLC | IT Asset Disposition & Electronics Recycling</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Mirarth IT Asset LLC - Certified IT Asset Disposition, NIST 800-88 data destruction, electronics recycling and asset remarketing for enterprises. Wyoming-based.">
+<title>Mirarth IT Asset | Certified ITAD, Data Destruction & Asset Recovery</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@300,400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
   :root {
-    --bg: #0a0e1a;
-    --surface: #131826;
-    --surface-2: #1a2033;
-    --primary: #00d4aa;
-    --primary-dim: #00a884;
-    --accent: #4fc3f7;
-    --text: #e8eef5;
-    --muted: #8b9aae;
-    --border: rgba(255,255,255,0.08);
-    --border-strong: rgba(255,255,255,0.15);
+    --green-04:#206200;
+    --green-03:#639959;
+    --green-02:#a6d89d;
+    --green-01:#d3f0cd;
+    --dark-green-01:#23281f;
+    --dark-green-02:#09160d;
+    --black:#060609;
+    --charcoal:#0e0d14;
+    --grey-03:#b8b8b8;
+    --grey-02:#f2f1ee;
+    --grey-01:#f3f3f3;
+    --off-white:#f8f8f8;
+    --stroke:#e3e1dc;
+    --white:#ffffff;
+    --radius-sm:8px;
+    --radius:14px;
+    --radius-lg:24px;
+    --container:1280px;
   }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
+    font-family:'Satoshi','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--off-white);
+    color:var(--charcoal);
+    line-height:1.55;
+    overflow-x:hidden;
   }
-  h1, h2, h3, h4 { font-family: 'Space Grotesk', 'Inter', sans-serif; line-height: 1.2; letter-spacing: -0.02em; }
-  a { color: inherit; text-decoration: none; }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  h1,h2,h3,h4,h5 {
+    font-family:'Clash Grotesk','Satoshi',sans-serif;
+    font-weight:500;
+    line-height:1.1;
+    letter-spacing:-0.02em;
+    color:var(--black);
+  }
+  a { color:inherit; text-decoration:none; }
+  img,svg { display:block; max-width:100%; }
+  button { font-family:inherit; cursor:pointer; border:none; background:none; }
 
-  /* Background gradient effects */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -20%;
-    left: -10%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+  .container { max-width:var(--container); margin:0 auto; padding:0 32px; }
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:500; letter-spacing:0.04em;
+    color:var(--green-04); text-transform:uppercase;
+    padding:6px 14px;
+    background:var(--green-01);
+    border-radius:999px;
+    margin-bottom:20px;
   }
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: -20%;
-    right: -10%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(79,195,247,0.06) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+  .eyebrow::before { content:''; width:6px; height:6px; background:var(--green-04); border-radius:50%; }
+  .section-title {
+    font-size:clamp(32px,4.2vw,52px);
+    font-weight:500;
+    margin-bottom:20px;
+    max-width:820px;
+  }
+  .section-sub {
+    font-size:clamp(16px,1.3vw,18px);
+    color:var(--charcoal); opacity:0.7;
+    max-width:680px;
+    margin-bottom:0;
   }
 
-  /* Navigation */
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: rgba(10,14,26,0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 0;
+  /* ===== TOP BAR ===== */
+  .topbar {
+    background:var(--dark-green-02);
+    color:var(--green-02);
+    font-size:13px;
+    padding:10px 0;
+    text-align:center;
   }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-  .logo {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .logo-mark {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    color: #0a0e1a;
-    font-weight: 800;
-  }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a { font-size: 14px; color: var(--muted); transition: color 0.2s; }
-  .nav-links a:hover { color: var(--text); }
-  .nav-cta {
-    padding: 10px 20px;
-    background: var(--primary);
-    color: #0a0e1a !important;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.2s;
-  }
-  .nav-cta:hover { background: var(--primary-dim); transform: translateY(-1px); }
-  .nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 24px; cursor: pointer; }
+  .topbar a { color:var(--green-01); text-decoration:underline; margin-left:6px; }
 
-  /* Hero */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 0 80px;
-    z-index: 1;
+  /* ===== NAV ===== */
+  nav.nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(248,248,248,0.85);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--stroke);
   }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 60px;
-    align-items: center;
+  .nav-inner {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
   }
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    background: rgba(0,212,170,0.1);
-    border: 1px solid rgba(0,212,170,0.3);
-    border-radius: 999px;
-    font-size: 13px;
-    color: var(--primary);
-    font-weight: 500;
-    margin-bottom: 24px;
+  .brand {
+    display:flex; align-items:center; gap:12px;
+    font-family:'Clash Grotesk',sans-serif;
+    font-size:22px; font-weight:600;
+    color:var(--black);
   }
-  .badge-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+  .brand-mark {
+    width:36px; height:36px;
+    background:var(--dark-green-02);
+    color:var(--green-02);
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:18px;
+    font-family:'Clash Grotesk',sans-serif;
   }
-  .hero h1 {
-    font-size: clamp(36px, 5.5vw, 64px);
-    font-weight: 700;
-    margin-bottom: 24px;
+  .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
+  .nav-links a {
+    font-size:14.5px; font-weight:500; color:var(--charcoal);
+    transition:color .2s;
   }
-  .hero h1 .gradient {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .hero p {
-    font-size: 18px;
-    color: var(--muted);
-    margin-bottom: 36px;
-    max-width: 540px;
-  }
-  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .nav-links a:hover { color:var(--green-04); }
+  .nav-actions { display:flex; gap:12px; align-items:center; }
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 15px;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px;
+    border-radius:999px;
+    font-size:14.5px; font-weight:500;
+    transition:all .2s;
+    white-space:nowrap;
   }
   .btn-primary {
-    background: var(--primary);
-    color: #0a0e1a;
+    background:var(--dark-green-02); color:var(--green-01);
+    border:1px solid var(--dark-green-02);
   }
-  .btn-primary:hover { background: var(--primary-dim); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,212,170,0.3); }
-  .btn-secondary {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border-strong);
+  .btn-primary:hover { background:var(--green-04); border-color:var(--green-04); color:var(--white); }
+  .btn-outline {
+    background:transparent; color:var(--charcoal);
+    border:1px solid var(--stroke);
   }
-  .btn-secondary:hover { background: var(--surface); border-color: var(--primary); }
+  .btn-outline:hover { background:var(--white); border-color:var(--charcoal); }
+  .btn-light {
+    background:var(--green-01); color:var(--dark-green-02);
+  }
+  .btn-light:hover { background:var(--green-02); }
+  .nav-toggle {
+    display:none; font-size:24px; color:var(--charcoal);
+  }
 
+  /* ===== HERO ===== */
+  .hero {
+    position:relative;
+    padding:80px 0 100px;
+    background:var(--off-white);
+    overflow:hidden;
+  }
+  .hero-inner { display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center; }
+  .hero h1 {
+    font-size:clamp(40px,5.5vw,72px);
+    font-weight:500;
+    margin-bottom:24px;
+  }
+  .hero h1 em {
+    font-style:normal;
+    color:var(--green-04);
+  }
+  .hero p {
+    font-size:clamp(16px,1.4vw,19px);
+    color:var(--charcoal); opacity:0.75;
+    max-width:540px;
+    margin-bottom:36px;
+  }
+  .hero-ctas { display:flex; gap:14px; flex-wrap:wrap; }
   .hero-visual {
-    position: relative;
-    aspect-ratio: 1;
-    max-width: 480px;
-    margin-left: auto;
+    position:relative;
+    background:var(--dark-green-02);
+    border-radius:var(--radius-lg);
+    padding:40px;
+    aspect-ratio:1/1;
+    overflow:hidden;
   }
-  .circuit {
-    position: absolute;
-    inset: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    overflow: hidden;
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .circuit::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+  .hero-visual::before {
+    content:'';
+    position:absolute; inset:0;
     background-image:
-      linear-gradient(rgba(0,212,170,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,170,0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
+      radial-gradient(circle at 20% 20%, rgba(166,216,157,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(99,153,89,0.2) 0%, transparent 50%);
   }
-  .stat-card {
-    position: relative;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    backdrop-filter: blur(10px);
+  .cert-stack {
+    position:relative; z-index:1;
+    display:flex; flex-direction:column; justify-content:space-between;
+    height:100%;
   }
-  .stat-value {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  .cert-card {
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+    display:flex; align-items:center; gap:14px;
   }
-  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
-  .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cert-card .ico {
+    width:44px; height:44px;
+    background:var(--green-01); color:var(--green-04);
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px;
+  }
+  .cert-card .meta .t { font-size:14px; font-weight:600; color:var(--black); }
+  .cert-card .meta .d { font-size:12px; color:var(--charcoal); opacity:0.6; }
+  .cert-row { display:flex; flex-direction:column; gap:14px; }
+  .cert-row .cert-card:nth-child(2) { margin-left:32px; }
+  .cert-bottom {
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:var(--radius);
+    padding:20px;
+    color:var(--green-01);
+    backdrop-filter:blur(10px);
+  }
+  .cert-bottom .label { font-size:12px; opacity:0.7; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:6px; }
+  .cert-bottom .val { font-family:'Clash Grotesk'; font-size:28px; font-weight:500; }
 
-  /* Sections */
-  section { padding: 100px 0; position: relative; z-index: 1; }
-  .section-header { text-align: center; margin-bottom: 64px; }
-  .section-eyebrow {
-    display: inline-block;
-    font-size: 13px;
-    color: var(--primary);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+  /* ===== TRUST BAR ===== */
+  .trust { background:var(--white); padding:50px 0; border-top:1px solid var(--stroke); border-bottom:1px solid var(--stroke); }
+  .trust-label {
+    text-align:center;
+    font-size:14px; color:var(--charcoal); opacity:0.6;
+    margin-bottom:28px;
   }
-  .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 16px; }
-  .section-desc { font-size: 17px; color: var(--muted); max-width: 640px; margin: 0 auto; }
+  .trust-row {
+    display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:48px 64px;
+  }
+  .trust-item {
+    font-family:'Clash Grotesk',sans-serif;
+    font-size:18px; font-weight:500;
+    color:var(--charcoal); opacity:0.55;
+    display:flex; align-items:center; gap:10px;
+    letter-spacing:-0.01em;
+    transition:opacity .2s;
+  }
+  .trust-item:hover { opacity:0.9; }
+  .trust-item i { font-size:22px; color:var(--green-04); opacity:0.7; }
 
-  /* About */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .about-text h2 { font-size: clamp(28px, 4vw, 42px); margin-bottom: 20px; }
-  .about-text p { color: var(--muted); margin-bottom: 16px; font-size: 16px; }
-  .about-points { list-style: none; margin-top: 28px; }
-  .about-points li {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 14px;
-    color: var(--text);
-  }
-  .check-icon {
-    flex-shrink: 0;
-    width: 22px;
-    height: 22px;
-    background: rgba(0,212,170,0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 13px;
-    font-weight: 700;
-    margin-top: 2px;
-  }
-  .about-visual {
-    background: linear-gradient(135deg, var(--surface), var(--surface-2));
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .info-block {
-    text-align: center;
-    padding: 24px 16px;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-  }
-  .info-block .big {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--primary);
-    line-height: 1;
-  }
-  .info-block .small { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  /* ===== SECTION BASE ===== */
+  section.block { padding:120px 0; }
+  .block-head { text-align:center; max-width:760px; margin:0 auto 64px; }
+  .block-head .eyebrow { margin-left:auto; margin-right:auto; }
+  .block-head .section-sub { margin-left:auto; margin-right:auto; }
 
-  /* Services */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
+  /* ===== SERVICES ALTERNATING ===== */
+  .services-block { background:var(--off-white); padding:120px 0; }
+  .service-row {
+    display:grid; grid-template-columns:1fr 1fr; gap:80px;
+    align-items:center;
+    margin-bottom:120px;
   }
-  .service-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
+  .service-row:last-child { margin-bottom:0; }
+  .service-row.reverse { direction:rtl; }
+  .service-row.reverse > * { direction:ltr; }
+  .service-row h3 {
+    font-size:clamp(28px,3.4vw,40px);
+    font-weight:500;
+    margin-bottom:18px;
   }
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
+  .service-row p {
+    color:var(--charcoal); opacity:0.7;
+    margin-bottom:28px;
+    font-size:17px;
   }
-  .service-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--border-strong);
-    background: var(--surface-2);
+  .service-row ul {
+    list-style:none; margin-bottom:30px;
   }
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-icon {
-    width: 52px;
-    height: 52px;
-    background: linear-gradient(135deg, rgba(0,212,170,0.15), rgba(79,195,247,0.15));
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    font-size: 24px;
+  .service-row li {
+    display:flex; gap:12px;
+    padding:10px 0;
+    border-top:1px solid var(--stroke);
+    font-size:15px;
   }
-  .service-card h3 { font-size: 20px; margin-bottom: 12px; }
-  .service-card p { color: var(--muted); font-size: 15px; }
+  .service-row li:first-child { border-top:none; }
+  .service-row li i {
+    color:var(--green-04); font-size:20px; flex-shrink:0;
+  }
+  .service-visual {
+    background:var(--grey-02);
+    border-radius:var(--radius-lg);
+    aspect-ratio:5/4;
+    position:relative; overflow:hidden;
+    border:1px solid var(--stroke);
+  }
+  .service-visual.dark { background:var(--dark-green-01); color:var(--green-01); }
+  .visual-inner {
+    position:absolute; inset:0;
+    padding:40px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .vi-top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .vi-tag {
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:inherit; opacity:0.6;
+  }
+  .vi-icon {
+    width:60px; height:60px;
+    background:rgba(0,0,0,0.05);
+    border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:30px; color:var(--green-04);
+  }
+  .service-visual.dark .vi-icon { background:rgba(255,255,255,0.08); color:var(--green-02); }
+  .vi-bottom {
+    display:grid; grid-template-columns:1fr 1fr; gap:10px;
+  }
+  .vi-stat {
+    background:rgba(255,255,255,0.7);
+    padding:14px;
+    border-radius:10px;
+    backdrop-filter:blur(10px);
+  }
+  .service-visual.dark .vi-stat {
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+  }
+  .vi-stat .n { font-family:'Clash Grotesk'; font-size:24px; font-weight:500; color:var(--green-04); }
+  .service-visual.dark .vi-stat .n { color:var(--green-02); }
+  .vi-stat .l { font-size:11px; opacity:0.7; margin-top:2px; }
+  .visual-pattern {
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(99,153,89,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,153,89,0.07) 1px, transparent 1px);
+    background-size:32px 32px;
+  }
+  .service-visual.dark .visual-pattern {
+    background-image:
+      linear-gradient(rgba(166,216,157,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(166,216,157,0.05) 1px, transparent 1px);
+  }
 
-  /* Process */
-  .process-wrapper {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 60px 40px;
+  /* ===== CERTIFICATIONS ===== */
+  .certs { background:var(--white); padding:90px 0; border-top:1px solid var(--stroke); border-bottom:1px solid var(--stroke); }
+  .certs-grid {
+    display:grid; grid-template-columns:1.5fr 2fr; gap:60px; align-items:center;
   }
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 32px;
-    position: relative;
+  .certs-grid h3 { font-size:clamp(24px,2.8vw,34px); margin-bottom:14px; }
+  .certs-grid p { color:var(--charcoal); opacity:0.7; }
+  .certs-badges {
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
   }
-  .step { position: relative; }
+  .cert-badge {
+    background:var(--off-white);
+    border:1px solid var(--stroke);
+    border-radius:var(--radius);
+    padding:24px 18px;
+    text-align:center;
+    transition:all .2s;
+  }
+  .cert-badge:hover { border-color:var(--green-03); transform:translateY(-4px); }
+  .cert-badge .b-ic {
+    width:48px; height:48px;
+    margin:0 auto 12px;
+    background:var(--green-01);
+    color:var(--green-04);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px;
+  }
+  .cert-badge .b-t { font-family:'Clash Grotesk'; font-size:15px; font-weight:500; color:var(--black); margin-bottom:4px; }
+  .cert-badge .b-d { font-size:11px; opacity:0.6; line-height:1.4; }
+
+  /* ===== INDUSTRIES ===== */
+  .industries { background:var(--grey-02); }
+  .industries-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .industry-card {
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    padding:32px;
+    position:relative;
+    overflow:hidden;
+    transition:all .25s;
+    border:1px solid var(--stroke);
+  }
+  .industry-card:hover { transform:translateY(-4px); border-color:var(--green-03); }
+  .industry-card .ic-ico {
+    width:52px; height:52px;
+    background:var(--green-01); color:var(--green-04);
+    border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:26px;
+    margin-bottom:20px;
+  }
+  .industry-card h4 { font-size:20px; font-weight:500; margin-bottom:8px; }
+  .industry-card p { font-size:14.5px; color:var(--charcoal); opacity:0.7; }
+
+  /* ===== PLATFORM CTA SECTION ===== */
+  .platform { background:var(--dark-green-02); color:var(--green-01); padding:120px 0; position:relative; overflow:hidden; }
+  .platform::before {
+    content:''; position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle at 80% 20%, rgba(166,216,157,0.1) 0%, transparent 50%),
+      radial-gradient(circle at 10% 80%, rgba(99,153,89,0.08) 0%, transparent 50%);
+  }
+  .platform-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1.1fr; gap:60px; align-items:center; }
+  .platform .eyebrow { background:rgba(255,255,255,0.08); color:var(--green-02); }
+  .platform .eyebrow::before { background:var(--green-02); }
+  .platform h2 { color:var(--white); font-size:clamp(32px,4.2vw,48px); margin-bottom:20px; }
+  .platform p { color:var(--green-01); opacity:0.8; margin-bottom:30px; font-size:17px; }
+  .platform-ctas { display:flex; gap:14px; flex-wrap:wrap; }
+  .platform .btn-primary { background:var(--green-02); color:var(--dark-green-02); border-color:var(--green-02); }
+  .platform .btn-primary:hover { background:var(--green-01); border-color:var(--green-01); }
+  .platform .btn-outline { color:var(--green-01); border-color:rgba(255,255,255,0.2); }
+  .platform .btn-outline:hover { background:rgba(255,255,255,0.08); border-color:var(--green-02); }
+  .platform-mock {
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:var(--radius-lg);
+    padding:24px;
+    backdrop-filter:blur(20px);
+  }
+  .mock-bar { display:flex; gap:6px; margin-bottom:18px; }
+  .mock-dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.2); }
+  .mock-tabs { display:flex; gap:8px; margin-bottom:18px; }
+  .mock-tab { padding:6px 12px; border-radius:8px; background:rgba(255,255,255,0.05); font-size:12px; color:var(--green-01); }
+  .mock-tab.active { background:var(--green-02); color:var(--dark-green-02); font-weight:500; }
+  .mock-row {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 16px;
+    background:rgba(255,255,255,0.03);
+    border-radius:10px;
+    margin-bottom:10px;
+    font-size:13px;
+  }
+  .mock-row:last-child { margin-bottom:0; }
+  .mock-row .sn { font-family:monospace; color:var(--green-02); }
+  .mock-row .st {
+    font-size:11px; padding:3px 10px; border-radius:999px;
+    background:rgba(166,216,157,0.15); color:var(--green-02);
+  }
+  .mock-row .st.pending { background:rgba(255,200,100,0.15); color:#ffc864; }
+
+  /* ===== ASSURANCE FEATURES ===== */
+  .assurance { background:var(--white); }
+  .assurance-grid {
+    display:grid; grid-template-columns:repeat(5,1fr); gap:0;
+    border:1px solid var(--stroke);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .assurance-item {
+    padding:36px 28px;
+    border-right:1px solid var(--stroke);
+    background:var(--white);
+  }
+  .assurance-item:last-child { border-right:none; }
+  .as-ico {
+    width:54px; height:54px;
+    background:var(--dark-green-02); color:var(--green-02);
+    border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:26px;
+    margin-bottom:22px;
+  }
+  .assurance-item h4 { font-size:18px; font-weight:500; margin-bottom:10px; }
+  .assurance-item p { font-size:14px; color:var(--charcoal); opacity:0.7; }
+
+  /* ===== PROCESS ===== */
+  .process { background:var(--grey-02); }
+  .process-grid {
+    display:grid; grid-template-columns:repeat(6,1fr); gap:0;
+    position:relative;
+  }
+  .process-grid::before {
+    content:''; position:absolute;
+    top:32px; left:8%; right:8%; height:2px;
+    background:repeating-linear-gradient(90deg, var(--green-03) 0 6px, transparent 6px 12px);
+    z-index:0;
+  }
+  .process-step {
+    text-align:center;
+    padding:0 14px;
+    position:relative; z-index:1;
+  }
   .step-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dim));
-    color: #0a0e1a;
-    border-radius: 50%;
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 20px;
-    font-family: 'Space Grotesk', sans-serif;
+    width:64px; height:64px;
+    background:var(--white);
+    border:2px solid var(--green-03);
+    color:var(--green-04);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Clash Grotesk'; font-size:22px; font-weight:600;
+    margin:0 auto 20px;
   }
-  .step h4 { font-size: 18px; margin-bottom: 10px; }
-  .step p { color: var(--muted); font-size: 14px; }
+  .process-step h4 { font-size:16px; font-weight:500; margin-bottom:8px; }
+  .process-step p { font-size:13px; color:var(--charcoal); opacity:0.7; line-height:1.5; }
 
-  /* Why Us */
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+  /* ===== STATS ===== */
+  .stats-block { background:var(--off-white); padding:100px 0; border-top:1px solid var(--stroke); border-bottom:1px solid var(--stroke); }
+  .stats-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:0;
   }
-  .why-item {
-    padding: 28px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    transition: border-color 0.3s;
+  .stat-cell {
+    padding:0 40px;
+    border-right:1px solid var(--stroke);
   }
-  .why-item:hover { border-color: rgba(0,212,170,0.3); }
-  .why-item .icon-wrap {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    background: rgba(0,212,170,0.1);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 20px;
+  .stat-cell:last-child { border-right:none; }
+  .stat-cell:first-child { padding-left:0; }
+  .stat-n {
+    font-family:'Clash Grotesk';
+    font-size:clamp(48px,6vw,80px);
+    font-weight:500; line-height:1;
+    color:var(--green-04);
+    margin-bottom:14px;
   }
-  .why-item h4 { font-size: 16px; margin-bottom: 6px; }
-  .why-item p { color: var(--muted); font-size: 14px; }
+  .stat-h { font-family:'Clash Grotesk'; font-size:18px; font-weight:500; margin-bottom:8px; }
+  .stat-d { font-size:14px; color:var(--charcoal); opacity:0.7; }
 
-  /* Contact */
-  .contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 60px;
-    background: linear-gradient(135deg, var(--surface), var(--surface-2));
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 60px;
+  /* ===== TESTIMONIALS ===== */
+  .testimonials { background:var(--white); }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card {
+    background:var(--grey-02);
+    border-radius:var(--radius-lg);
+    padding:34px;
+    display:flex; flex-direction:column;
   }
-  .contact-info h2 { font-size: clamp(28px, 3.5vw, 38px); margin-bottom: 16px; }
-  .contact-info > p { color: var(--muted); margin-bottom: 36px; }
-  .contact-list { list-style: none; }
-  .contact-list li {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    margin-bottom: 24px;
+  .testi-card .quote-mark {
+    font-family:Georgia,serif; font-size:48px; font-weight:700;
+    color:var(--green-04); line-height:0.8; margin-bottom:10px;
   }
-  .contact-list .icon-wrap {
-    flex-shrink: 0;
-    width: 42px;
-    height: 42px;
-    background: rgba(0,212,170,0.12);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 18px;
+  .testi-card .quote {
+    flex:1;
+    color:var(--charcoal); font-size:15.5px; line-height:1.6;
+    margin-bottom:24px;
   }
-  .contact-list .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-  .contact-list .value { color: var(--text); font-size: 15px; font-weight: 500; }
-  .contact-list .value a:hover { color: var(--primary); }
+  .testi-author { display:flex; align-items:center; gap:12px; padding-top:20px; border-top:1px solid var(--stroke); }
+  .testi-avatar {
+    width:44px; height:44px;
+    background:linear-gradient(135deg,var(--green-03),var(--dark-green-01));
+    color:var(--green-01);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:600; font-family:'Clash Grotesk';
+  }
+  .testi-meta .n { font-size:14px; font-weight:600; color:var(--black); }
+  .testi-meta .r { font-size:12px; opacity:0.6; }
 
-  form { display: flex; flex-direction: column; gap: 18px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .field label {
-    display: block;
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 8px;
-    font-weight: 500;
+  /* ===== INSIGHTS ===== */
+  .insights { background:var(--off-white); }
+  .insights-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .insight-card {
+    background:var(--white);
+    border:1px solid var(--stroke);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    transition:all .25s;
+    display:flex; flex-direction:column;
   }
-  .field input, .field textarea, .field select {
-    width: 100%;
-    padding: 12px 16px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: inherit;
-    font-size: 14px;
-    transition: all 0.2s;
+  .insight-card:hover { transform:translateY(-4px); border-color:var(--green-03); box-shadow:0 20px 40px rgba(0,0,0,0.06); }
+  .insight-cover {
+    aspect-ratio:16/10;
+    background:linear-gradient(135deg,var(--green-01),var(--green-02));
+    position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--dark-green-02);
+    font-size:60px;
   }
-  .field input:focus, .field textarea:focus, .field select:focus {
-    outline: none;
-    border-color: var(--primary);
-    background: rgba(0,212,170,0.05);
-  }
-  .field textarea { resize: vertical; min-height: 110px; }
-  .form-note { font-size: 12px; color: var(--muted); }
+  .insight-cover.alt-1 { background:linear-gradient(135deg,var(--green-02),var(--green-03)); }
+  .insight-cover.alt-2 { background:linear-gradient(135deg,var(--dark-green-01),var(--dark-green-02)); color:var(--green-02); }
+  .insight-body { padding:28px; flex:1; display:flex; flex-direction:column; }
+  .insight-cat { font-size:12px; color:var(--green-04); letter-spacing:0.05em; text-transform:uppercase; margin-bottom:10px; font-weight:500; }
+  .insight-body h4 { font-size:19px; font-weight:500; margin-bottom:14px; flex:1; line-height:1.3; }
+  .insight-link { display:inline-flex; align-items:center; gap:6px; color:var(--green-04); font-size:14px; font-weight:500; }
+  .insight-link i { transition:transform .2s; }
+  .insight-card:hover .insight-link i { transform:translateX(4px); }
 
-  /* Footer */
+  /* ===== FINAL CTA ===== */
+  .final-cta {
+    background:var(--dark-green-02);
+    color:var(--green-01);
+    padding:100px 0;
+    position:relative; overflow:hidden;
+  }
+  .final-cta::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 30% 50%, rgba(166,216,157,0.12) 0%, transparent 60%);
+  }
+  .final-cta-inner { position:relative; z-index:1; max-width:780px; }
+  .final-cta h2 {
+    color:var(--white);
+    font-size:clamp(36px,4.8vw,56px);
+    margin-bottom:20px;
+  }
+  .final-cta p { color:var(--green-01); opacity:0.8; font-size:18px; margin-bottom:36px; }
+  .final-cta .btn-primary { background:var(--green-02); color:var(--dark-green-02); border-color:var(--green-02); }
+  .final-cta .btn-primary:hover { background:var(--green-01); border-color:var(--green-01); }
+  .final-cta .btn-outline { color:var(--green-01); border-color:rgba(255,255,255,0.2); }
+  .final-cta .btn-outline:hover { background:rgba(255,255,255,0.08); border-color:var(--green-02); }
+
+  /* ===== CONTACT FORM ===== */
+  .contact { background:var(--white); }
+  .contact-wrap { display:grid; grid-template-columns:1fr 1.2fr; gap:60px; }
+  .contact-info h3 { font-size:32px; margin-bottom:16px; }
+  .contact-info p { color:var(--charcoal); opacity:0.7; margin-bottom:30px; }
+  .contact-list { list-style:none; }
+  .contact-list li { display:flex; gap:14px; padding:18px 0; border-top:1px solid var(--stroke); }
+  .contact-list li:first-child { border-top:none; }
+  .contact-list .ci {
+    width:44px; height:44px;
+    background:var(--green-01); color:var(--green-04);
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; font-size:20px;
+  }
+  .contact-list .lab { font-size:12px; opacity:0.6; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px; }
+  .contact-list .val { font-size:15px; font-weight:500; color:var(--black); }
+  .contact-list .val a:hover { color:var(--green-04); }
+  form.cf {
+    background:var(--off-white);
+    border:1px solid var(--stroke);
+    border-radius:var(--radius-lg);
+    padding:36px;
+    display:flex; flex-direction:column; gap:18px;
+  }
+  .cf-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .cf-field label { display:block; font-size:13px; color:var(--charcoal); opacity:0.7; margin-bottom:8px; font-weight:500; }
+  .cf-field input, .cf-field textarea, .cf-field select {
+    width:100%;
+    padding:13px 16px;
+    background:var(--white);
+    border:1px solid var(--stroke);
+    border-radius:10px;
+    font-family:inherit;
+    font-size:14.5px;
+    color:var(--charcoal);
+    transition:all .15s;
+    -webkit-appearance:none; appearance:none;
+  }
+  .cf-field input:focus, .cf-field textarea:focus, .cf-field select:focus {
+    outline:none; border-color:var(--green-04); background:var(--white);
+    box-shadow:0 0 0 3px var(--green-01);
+  }
+  .cf-field textarea { min-height:120px; resize:vertical; }
+  .cf-note { font-size:12px; color:var(--charcoal); opacity:0.55; }
+
+  /* ===== FOOTER ===== */
   footer {
-    border-top: 1px solid var(--border);
-    padding: 50px 0 30px;
-    position: relative;
-    z-index: 1;
-    margin-top: 60px;
+    background:var(--dark-green-02);
+    color:var(--green-01);
+    padding:80px 0 30px;
   }
   .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
+    display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr;
+    gap:50px; margin-bottom:60px;
   }
-  .footer-brand p { color: var(--muted); font-size: 14px; margin-top: 16px; max-width: 320px; }
+  .footer-brand p { font-size:14px; opacity:0.7; margin-top:18px; max-width:300px; line-height:1.6; }
+  .footer-brand .brand { color:var(--green-01); }
+  .footer-brand .brand-mark { background:var(--green-02); color:var(--dark-green-02); }
   .footer-col h5 {
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 18px;
-    color: var(--text);
+    font-family:'Clash Grotesk'; font-size:13px;
+    text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--green-02);
+    margin-bottom:20px;
   }
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 10px; }
-  .footer-col a { color: var(--muted); font-size: 14px; transition: color 0.2s; }
-  .footer-col a:hover { color: var(--primary); }
+  .footer-col ul { list-style:none; }
+  .footer-col li { margin-bottom:12px; }
+  .footer-col a { font-size:14px; opacity:0.7; transition:opacity .2s; }
+  .footer-col a:hover { opacity:1; color:var(--green-02); }
   .footer-bottom {
-    border-top: 1px solid var(--border);
-    padding-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    color: var(--muted);
-    font-size: 13px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+    font-size:13px; opacity:0.6;
   }
 
-  /* Responsive */
-  @media (max-width: 900px) {
-    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border); gap: 20px; }
-    .nav-links.open { display: flex; }
-    .nav-toggle { display: block; }
-    .hero-grid, .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
-    .hero-visual { max-width: 100%; margin: 0; }
-    .contact-wrapper { padding: 36px 24px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    section { padding: 70px 0; }
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:1024px){
+    .hero-inner, .platform-inner, .certs-grid, .contact-wrap, .service-row { grid-template-columns:1fr; gap:40px; }
+    .service-row.reverse { direction:ltr; }
+    .industries-grid, .testi-grid, .insights-grid { grid-template-columns:repeat(2,1fr); }
+    .assurance-grid { grid-template-columns:repeat(2,1fr); }
+    .assurance-item { border-right:1px solid var(--stroke); border-bottom:1px solid var(--stroke); }
+    .assurance-item:nth-child(2n) { border-right:none; }
+    .process-grid { grid-template-columns:repeat(3,1fr); row-gap:40px; }
+    .process-grid::before { display:none; }
+    .stats-grid { grid-template-columns:1fr; }
+    .stat-cell { padding:30px 0; border-right:none; border-bottom:1px solid var(--stroke); }
+    .stat-cell:last-child { border-bottom:none; }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+    .certs-badges { grid-template-columns:repeat(2,1fr); }
   }
-  @media (max-width: 500px) {
-    .footer-grid { grid-template-columns: 1fr; }
-    .about-visual { grid-template-columns: 1fr; }
-    .process-wrapper { padding: 36px 20px; }
+  @media (max-width:720px){
+    .nav-links, .nav-actions .btn-outline { display:none; }
+    .nav-toggle { display:block; }
+    .nav-links.open { display:flex; position:absolute; top:100%; left:0; right:0; background:var(--white); flex-direction:column; padding:24px; border-bottom:1px solid var(--stroke); gap:18px; align-items:flex-start; }
+    .industries-grid, .testi-grid, .insights-grid { grid-template-columns:1fr; }
+    .assurance-grid { grid-template-columns:1fr; }
+    .assurance-item, .assurance-item:nth-child(2n) { border-right:none; border-bottom:1px solid var(--stroke); }
+    .assurance-item:last-child { border-bottom:none; }
+    .process-grid { grid-template-columns:repeat(2,1fr); }
+    .cf-row { grid-template-columns:1fr; }
+    .footer-grid { grid-template-columns:1fr; }
+    section.block, .platform, .final-cta { padding:80px 0; }
+    .container { padding:0 22px; }
+    .certs-badges { grid-template-columns:1fr 1fr; }
+    .cert-row .cert-card:nth-child(2) { margin-left:0; }
   }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- TOP BAR -->
+<div class="topbar">
+  Now accepting Q1 2026 enterprise ITAD program bookings. <a href="#contact">Reserve capacity →</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
   <div class="container nav-inner">
-    <a href="#" class="logo">
-      <span class="logo-mark">M</span>
+    <a href="#" class="brand">
+      <span class="brand-mark">M</span>
       <span>Mirarth IT Asset</span>
     </a>
-    <div class="nav-links" id="navLinks">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#process">Process</a>
-      <a href="#why">Why Us</a>
-      <a href="#contact" class="nav-cta">Get a Quote</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#platform">Platform</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#insights">Resources</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-outline">Sign In</a>
+      <a href="#contact" class="btn btn-primary">Talk to Sales <i class="ph ph-arrow-right"></i></a>
+      <button class="nav-toggle" id="navToggle"><i class="ph ph-list"></i></button>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="container hero-grid">
+  <div class="container hero-inner">
     <div>
-      <div class="badge"><span class="badge-dot"></span> Wyoming-Based IT Asset Disposition</div>
-      <h1>Recover Value from <span class="gradient">Retired IT Assets</span></h1>
-      <p>Mirarth IT Asset LLC provides secure, compliant, and sustainable solutions for end-of-life electronics — from data destruction to refurbishment and recycling.</p>
+      <span class="eyebrow">Proof in every certificate</span>
+      <h1>Clarity in every <em>certified step</em>.</h1>
+      <p>Mirarth IT Asset turns complex IT hardware retirement into traceable, verifiable processes — combining certified standards, serialized accuracy, and real-time visibility so security and compliance teams operate with total confidence.</p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn btn-primary">Request a Free Quote &rarr;</a>
-        <a href="#services" class="btn btn-secondary">Explore Services</a>
+        <a href="#contact" class="btn btn-primary">Talk to Sales <i class="ph ph-arrow-right"></i></a>
+        <a href="#platform" class="btn btn-outline">Explore Platform</a>
       </div>
     </div>
     <div class="hero-visual">
-      <div class="circuit">
-        <div style="position: relative; z-index: 1;">
-          <div style="font-size: 13px; color: var(--muted); margin-bottom: 6px;">CERTIFIED PARTNER</div>
-          <div style="font-family: 'Space Grotesk'; font-size: 22px; font-weight: 600;">Responsible ITAD</div>
+      <div class="cert-stack">
+        <div class="cert-row">
+          <div class="cert-card">
+            <div class="ico"><i class="ph ph-shield-check"></i></div>
+            <div class="meta">
+              <div class="t">Certificate of Destruction</div>
+              <div class="d">SN: WY-2026-04891 · Verified</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="ico"><i class="ph ph-recycle"></i></div>
+            <div class="meta">
+              <div class="t">Environmental Impact</div>
+              <div class="d">1,284 lbs diverted from landfill</div>
+            </div>
+          </div>
         </div>
-        <div style="position: relative; z-index: 1;" class="stats-row">
-          <div class="stat-card">
-            <div class="stat-value">100%</div>
-            <div class="stat-label">Data Destruction Guarantee</div>
+        <div class="cert-bottom">
+          <div class="label">Chain of Custody · Live</div>
+          <div class="val">42 assets · 6 facilities</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-label">Trusted by organizations where security and accuracy matter most</div>
+    <div class="trust-row">
+      <div class="trust-item"><i class="ph ph-buildings"></i> Financial Services</div>
+      <div class="trust-item"><i class="ph ph-heartbeat"></i> Healthcare Systems</div>
+      <div class="trust-item"><i class="ph ph-graduation-cap"></i> Higher Education</div>
+      <div class="trust-item"><i class="ph ph-cube"></i> Logistics &amp; Retail</div>
+      <div class="trust-item"><i class="ph ph-bank"></i> Government &amp; Public Sector</div>
+      <div class="trust-item"><i class="ph ph-cloud"></i> Technology &amp; SaaS</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-block">
+  <div class="block-head">
+    <span class="eyebrow">ITAD Services for the Enterprise</span>
+    <h2 class="section-title">Secure, certified, and operationally rigorous IT asset disposition.</h2>
+    <p class="section-sub">Aligned with the security, operational, and regulatory demands of modern IT organizations.</p>
+  </div>
+  <div class="container">
+
+    <div class="service-row">
+      <div>
+        <h3>Turn ITAD into a controlled, auditable system</h3>
+        <p>End-to-end IT asset disposition programs designed for enterprise IT, security, and governance teams. Replace fragmented vendor workflows with a single, certified pipeline.</p>
+        <ul>
+          <li><i class="ph ph-check-circle"></i> Serialized asset tagging and intake</li>
+          <li><i class="ph ph-check-circle"></i> Audit-ready chain-of-custody documentation</li>
+          <li><i class="ph ph-check-circle"></i> Configurable disposition rules per business unit</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Explore IT Asset Disposition <i class="ph ph-arrow-right"></i></a>
+      </div>
+      <div class="service-visual">
+        <div class="visual-pattern"></div>
+        <div class="visual-inner">
+          <div class="vi-top">
+            <div class="vi-tag">ITAD Program</div>
+            <div class="vi-icon"><i class="ph ph-clipboard-text"></i></div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">Zero</div>
-            <div class="stat-label">Landfill Commitment</div>
+          <div class="vi-bottom">
+            <div class="vi-stat"><div class="n">100%</div><div class="l">Asset accountability</div></div>
+            <div class="vi-stat"><div class="n">24h</div><div class="l">Pickup turnaround</div></div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">24h</div>
-            <div class="stat-label">Quote Turnaround</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-row reverse">
+      <div>
+        <h3>Bring data destruction under verified, certified control</h3>
+        <p>NIST SP 800-88 Rev. 1 aligned sanitization with documented, controlled hardware removal for servers, storage arrays, and networking equipment. Every drive accounted for.</p>
+        <ul>
+          <li><i class="ph ph-check-circle"></i> Cryptographic erase, purge, and physical destruction</li>
+          <li><i class="ph ph-check-circle"></i> Serialized Certificate of Destruction per device</li>
+          <li><i class="ph ph-check-circle"></i> On-site destruction options for sensitive workloads</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Explore Data Destruction <i class="ph ph-arrow-right"></i></a>
+      </div>
+      <div class="service-visual dark">
+        <div class="visual-pattern"></div>
+        <div class="visual-inner">
+          <div class="vi-top">
+            <div class="vi-tag">Data Destruction</div>
+            <div class="vi-icon"><i class="ph ph-shield-check"></i></div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">50+</div>
-            <div class="stat-label">Hardware Categories</div>
+          <div class="vi-bottom">
+            <div class="vi-stat"><div class="n">800-88</div><div class="l">NIST aligned</div></div>
+            <div class="vi-stat"><div class="n">0</div><div class="l">Data breach incidents</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div>
+        <h3>Secure hardware logistics with end-to-end traceability</h3>
+        <p>Vetted carriers, sealed and tracked containers, and geo-stamped transit logs. From your loading dock to our processing facility, every step is documented.</p>
+        <ul>
+          <li><i class="ph ph-check-circle"></i> Tamper-evident packaging and asset seals</li>
+          <li><i class="ph ph-check-circle"></i> GPS-tracked transit with timestamped handoffs</li>
+          <li><i class="ph ph-check-circle"></i> Nationwide pickup across the contiguous US</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Explore Logistics <i class="ph ph-arrow-right"></i></a>
+      </div>
+      <div class="service-visual">
+        <div class="visual-pattern"></div>
+        <div class="visual-inner">
+          <div class="vi-top">
+            <div class="vi-tag">Secure Logistics</div>
+            <div class="vi-icon"><i class="ph ph-truck"></i></div>
+          </div>
+          <div class="vi-bottom">
+            <div class="vi-stat"><div class="n">48</div><div class="l">States serviced</div></div>
+            <div class="vi-stat"><div class="n">100%</div><div class="l">Tracked handoffs</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-row reverse">
+      <div>
+        <h3>Recover asset value without compromising compliance</h3>
+        <p>Functional hardware is diagnostically tested, graded, and remarketed through trusted global secondary channels. Predictable ROI, reconciled to serial number.</p>
+        <ul>
+          <li><i class="ph ph-check-circle"></i> Standardized diagnostic and grading workflow</li>
+          <li><i class="ph ph-check-circle"></i> Multi-channel remarketing across approved buyers</li>
+          <li><i class="ph ph-check-circle"></i> Transparent settlement reporting</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Explore Asset Recovery <i class="ph ph-arrow-right"></i></a>
+      </div>
+      <div class="service-visual dark">
+        <div class="visual-pattern"></div>
+        <div class="visual-inner">
+          <div class="vi-top">
+            <div class="vi-tag">Asset Recovery</div>
+            <div class="vi-icon"><i class="ph ph-trend-up"></i></div>
+          </div>
+          <div class="vi-bottom">
+            <div class="vi-stat"><div class="n">+38%</div><div class="l">Avg recovered value</div></div>
+            <div class="vi-stat"><div class="n">50+</div><div class="l">Hardware categories</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div>
+        <h3>Maintain continuous audit readiness through real-time reporting</h3>
+        <p>Centralized documentation of every certificate, environmental metric, and disposition outcome — pulled on demand by your compliance, ESG, and IT teams.</p>
+        <ul>
+          <li><i class="ph ph-check-circle"></i> Live dashboards for active programs</li>
+          <li><i class="ph ph-check-circle"></i> Exportable HIPAA / SOX / GLBA evidence packs</li>
+          <li><i class="ph ph-check-circle"></i> Quarterly ESG impact summaries</li>
+        </ul>
+        <a href="#platform" class="btn btn-outline">Explore Reporting <i class="ph ph-arrow-right"></i></a>
+      </div>
+      <div class="service-visual">
+        <div class="visual-pattern"></div>
+        <div class="visual-inner">
+          <div class="vi-top">
+            <div class="vi-tag">Reporting Suite</div>
+            <div class="vi-icon"><i class="ph ph-chart-line-up"></i></div>
+          </div>
+          <div class="vi-bottom">
+            <div class="vi-stat"><div class="n">Real-time</div><div class="l">Dashboard updates</div></div>
+            <div class="vi-stat"><div class="n">On-demand</div><div class="l">Audit exports</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs">
+  <div class="container certs-grid">
+    <div>
+      <span class="eyebrow">Certifications</span>
+      <h3>Standards that satisfy enterprise governance requirements</h3>
+      <p>Our facilities, workflows, and reporting are built around the global benchmarks for ITAD, data security, environmental responsibility, and quality management.</p>
+    </div>
+    <div class="certs-badges">
+      <div class="cert-badge">
+        <div class="b-ic"><i class="ph ph-shield-star"></i></div>
+        <div class="b-t">R2v3 Aligned</div>
+        <div class="b-d">Responsible recycling standard</div>
+      </div>
+      <div class="cert-badge">
+        <div class="b-ic"><i class="ph ph-lock-key"></i></div>
+        <div class="b-t">NIST 800-88</div>
+        <div class="b-d">Media sanitization guideline</div>
+      </div>
+      <div class="cert-badge">
+        <div class="b-ic"><i class="ph ph-certificate"></i></div>
+        <div class="b-t">NAID AAA Standards</div>
+        <div class="b-d">Information destruction</div>
+      </div>
+      <div class="cert-badge">
+        <div class="b-ic"><i class="ph ph-leaf"></i></div>
+        <div class="b-t">ISO 14001 Practice</div>
+        <div class="b-d">Environmental management</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries" class="block industries">
+  <div class="container">
+    <div class="block-head">
+      <span class="eyebrow">Industry Alignment</span>
+      <h2 class="section-title">Purpose-built ITAD for regulated environments</h2>
+      <p class="section-sub">Supporting organizations where certification, documentation, and chain-of-custody are essential.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-card">
+        <div class="ic-ico"><i class="ph ph-cube"></i></div>
+        <h4>Logistics &amp; Retail</h4>
+        <p>Distributed fleet management, store-level pickups, and rapid hardware refresh cycles for multi-site operations.</p>
+      </div>
+      <div class="industry-card">
+        <div class="ic-ico"><i class="ph ph-buildings"></i></div>
+        <h4>Financial Services</h4>
+        <p>SOX, GLBA, and PCI-aligned asset disposition with documentation built for audit and examiner review.</p>
+      </div>
+      <div class="industry-card">
+        <div class="ic-ico"><i class="ph ph-heartbeat"></i></div>
+        <h4>Healthcare</h4>
+        <p>HIPAA-compliant data sanitization and PHI-handling protocols for hospital systems, clinics, and diagnostic networks.</p>
+      </div>
+      <div class="industry-card">
+        <div class="ic-ico"><i class="ph ph-cloud"></i></div>
+        <h4>Technology &amp; SaaS</h4>
+        <p>High-volume lifecycle and refresh programs for fast-moving engineering organizations and data center operators.</p>
+      </div>
+      <div class="industry-card">
+        <div class="ic-ico"><i class="ph ph-graduation-cap"></i></div>
+        <h4>Education</h4>
+        <p>Large-scale device refresh, 1:1 device return programs, and surplus inventory clearance for K-12 and higher ed.</p>
+      </div>
+      <div class="industry-card">
+        <div class="ic-ico"><i class="ph ph-bank"></i></div>
+        <h4>Government</h4>
+        <p>Secure logistics, vetted personnel, and audit-ready chain-of-custody for federal, state, and municipal programs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section id="platform" class="platform">
+  <div class="container platform-inner">
+    <div>
+      <span class="eyebrow">Client Portal</span>
+      <h2>Operational visibility your compliance team will trust.</h2>
+      <p>A centralized platform for tracking assets, validating data destruction, managing documentation, and accessing audit-ready records — accessible to your security, IT, and ESG teams.</p>
+      <div class="platform-ctas">
+        <a href="#contact" class="btn btn-primary">Talk to Sales <i class="ph ph-arrow-right"></i></a>
+        <a href="#process" class="btn btn-outline">View Process</a>
+      </div>
+    </div>
+    <div class="platform-mock">
+      <div class="mock-bar">
+        <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+      </div>
+      <div class="mock-tabs">
+        <span class="mock-tab active">Active Assets</span>
+        <span class="mock-tab">Certificates</span>
+        <span class="mock-tab">Reports</span>
+      </div>
+      <div class="mock-row">
+        <span class="sn">SN: WY-2026-04891</span>
+        <span>Dell PowerEdge R750</span>
+        <span class="st">Destroyed</span>
+      </div>
+      <div class="mock-row">
+        <span class="sn">SN: WY-2026-04892</span>
+        <span>Cisco Catalyst 9300</span>
+        <span class="st">Refurbished</span>
+      </div>
+      <div class="mock-row">
+        <span class="sn">SN: WY-2026-04893</span>
+        <span>HP ProBook 450 G9</span>
+        <span class="st pending">In Transit</span>
+      </div>
+      <div class="mock-row">
+        <span class="sn">SN: WY-2026-04894</span>
+        <span>Lenovo ThinkPad X1</span>
+        <span class="st">Recycled</span>
+      </div>
+      <div class="mock-row">
+        <span class="sn">SN: WY-2026-04895</span>
+        <span>NetApp AFF A400</span>
+        <span class="st">Destroyed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSURANCE -->
+<section class="block assurance">
+  <div class="container">
+    <div class="block-head">
+      <span class="eyebrow">Enterprise Assurance</span>
+      <h2 class="section-title">Engineered for organizations that demand documentation and accuracy</h2>
+      <p class="section-sub">Every workflow is designed for audit-ready output, with no manual reconciliation required.</p>
+    </div>
+    <div class="assurance-grid">
+      <div class="assurance-item">
+        <div class="as-ico"><i class="ph ph-certificate"></i></div>
+        <h4>R2v3-Aligned Operations</h4>
+        <p>Workflows that meet the highest global standards for ITAD, reuse, and environmental compliance.</p>
+      </div>
+      <div class="assurance-item">
+        <div class="as-ico"><i class="ph ph-eraser"></i></div>
+        <h4>Audited NIST 800-88 Sanitization</h4>
+        <p>Validated erasure and destruction methods with serialized reporting for every device.</p>
+      </div>
+      <div class="assurance-item">
+        <div class="as-ico"><i class="ph ph-path"></i></div>
+        <h4>Real-Time Chain-of-Custody</h4>
+        <p>Full lifecycle visibility, including pickup timestamps, handling logs, and disposition outcomes.</p>
+      </div>
+      <div class="assurance-item">
+        <div class="as-ico"><i class="ph ph-arrows-clockwise"></i></div>
+        <h4>Standardized Workflows</h4>
+        <p>System-driven testing, grading, and documentation ensure uniformity across high-volume programs.</p>
+      </div>
+      <div class="assurance-item">
+        <div class="as-ico"><i class="ph ph-coins"></i></div>
+        <h4>Optimized Asset Recovery</h4>
+        <p>Transparent resale performance reporting delivers predictable ROI and audit-ready reconciliation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="block process">
+  <div class="container">
+    <div class="block-head">
+      <span class="eyebrow">Structured Workflow</span>
+      <h2 class="section-title">A certified, fully documented process for every device</h2>
+      <p class="section-sub">Six clearly defined stages, each producing verifiable output.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h4>Secure Pickup</h4>
+        <p>Sealed, tracked, and logged with geolocation and timestamp verification.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h4>Serialized Intake</h4>
+        <p>Every asset registered and assigned to your organization's workflow.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h4>Data Destruction</h4>
+        <p>Cryptographic erasure or physical destruction with serialized logs.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h4>Testing &amp; Grading</h4>
+        <p>Automated diagnostic workflows ensure consistency and repeatability.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">05</div>
+        <h4>Disposition Pathway</h4>
+        <p>Remarketing or certified recycling aligned to governance standards.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">06</div>
+        <h4>Certificates &amp; Reports</h4>
+        <p>CODs, COAs, and environmental reporting accessible on demand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-block">
+  <div class="container">
+    <div class="block-head" style="text-align:left; margin:0 0 60px;">
+      <span class="eyebrow">Operational Scale</span>
+      <h2 class="section-title" style="margin:0;">Backed by measurable accuracy</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <div class="stat-n">100%</div>
+        <div class="stat-h">Data sanitization accuracy</div>
+        <div class="stat-d">Validated through automation and multi-stage quality control on every storage device.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n">Zero</div>
+        <div class="stat-h">Landfill commitment</div>
+        <div class="stat-d">All non-recoverable materials routed to certified downstream recyclers.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n">24h</div>
+        <div class="stat-h">Quote turnaround</div>
+        <div class="stat-d">Capacity available for distributed enterprise programs across the contiguous US.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="block testimonials">
+  <div class="container">
+    <div class="block-head">
+      <span class="eyebrow">Testimonials</span>
+      <h2 class="section-title">Proven results, verified by our clients</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="quote-mark">“</div>
+        <div class="quote">Mirarth provides the governance, accuracy, and reporting our compliance team requires. Their chain-of-custody and documentation standards outperform every provider we've evaluated.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">DI</div>
+          <div class="testi-meta">
+            <div class="n">Director of Infrastructure</div>
+            <div class="r">Regional Logistics Enterprise</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">“</div>
+        <div class="quote">Our ESG committee now includes Mirarth's environmental impact data in quarterly reports. The verified metrics give our investors confidence we're managing technology disposal responsibly.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">VS</div>
+          <div class="testi-meta">
+            <div class="n">VP, Corporate Sustainability</div>
+            <div class="r">Technology Services Firm</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">“</div>
+        <div class="quote">The portal transformed how we manage device disposition across multiple facilities. Compliance pulls HIPAA certificates instantly and our IT managers schedule pickups in minutes.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">DA</div>
+          <div class="testi-meta">
+            <div class="n">Director, IT Asset Management</div>
+            <div class="r">Multi-Site Healthcare Network</div>
           </div>
         </div>
       </div>
@@ -585,257 +1205,150 @@
   </div>
 </section>
 
-<section id="about">
-  <div class="container about-grid">
-    <div class="about-text">
-      <span class="section-eyebrow">About Us</span>
-      <h2>Trusted IT Asset Disposition partner headquartered in Wyoming</h2>
-      <p>Mirarth IT Asset LLC is a Wyoming-registered company specializing in the responsible recycling, refurbishment, and resale of used enterprise and consumer electronics. We help businesses across the United States retire their IT hardware while maximizing recovered value and meeting strict data security standards.</p>
-      <p>Whether you're decommissioning a data center, refreshing fleet laptops, or clearing surplus inventory, our team handles every step — from secure pickup to detailed reporting.</p>
-      <ul class="about-points">
-        <li><span class="check-icon">&#10003;</span> Certified data destruction with chain-of-custody reporting</li>
-        <li><span class="check-icon">&#10003;</span> Maximum value recovery through testing and refurbishment</li>
-        <li><span class="check-icon">&#10003;</span> Environmentally responsible recycling, zero landfill policy</li>
+<!-- INSIGHTS -->
+<section id="insights" class="block insights">
+  <div class="container">
+    <div class="block-head">
+      <span class="eyebrow">Insights</span>
+      <h2 class="section-title">Technical guidance for IT, security, and compliance leaders</h2>
+      <p class="section-sub">Stay ahead of evolving standards and best practices in secure IT asset disposition.</p>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-cover"><i class="ph ph-certificate"></i></div>
+        <div class="insight-body">
+          <div class="insight-cat">Compliance</div>
+          <h4>What does R2v3 mean and why it matters for your ITAD vendor</h4>
+          <a class="insight-link">Read story <i class="ph ph-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-cover alt-1"><i class="ph ph-hard-drives"></i></div>
+        <div class="insight-body">
+          <div class="insight-cat">Data Security</div>
+          <h4>Where is data actually stored? Understanding RAM, GPU, and persistent storage</h4>
+          <a class="insight-link">Learn more <i class="ph ph-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-cover alt-2"><i class="ph ph-eraser"></i></div>
+        <div class="insight-body">
+          <div class="insight-cat">Standards</div>
+          <h4>Understanding NIST SP 800-88r1: Clear, Purge, and Cryptographic Erase</h4>
+          <a class="insight-link">Learn more <i class="ph ph-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="block contact">
+  <div class="container contact-wrap">
+    <div class="contact-info">
+      <span class="eyebrow">Contact</span>
+      <h3>Build a secure, certified ITAD program for your organization</h3>
+      <p>Our team designs disposition strategies aligned to enterprise IT, security, and governance requirements. Tell us about your equipment and we'll respond within one business day.</p>
+      <ul class="contact-list">
+        <li>
+          <div class="ci"><i class="ph ph-envelope-simple"></i></div>
+          <div>
+            <div class="lab">Email</div>
+            <div class="val"><a href="mailto:joysulen@hotmail.com">joysulen@hotmail.com</a></div>
+          </div>
+        </li>
+        <li>
+          <div class="ci"><i class="ph ph-phone"></i></div>
+          <div>
+            <div class="lab">Daytime Phone</div>
+            <div class="val"><a href="tel:+12065715406">(206) 571-5406</a></div>
+          </div>
+        </li>
+        <li>
+          <div class="ci"><i class="ph ph-map-pin"></i></div>
+          <div>
+            <div class="lab">Registered Office</div>
+            <div class="val">30 N Gould St, Ste R<br>Sheridan, WY 82801, USA</div>
+          </div>
+        </li>
       </ul>
     </div>
-    <div class="about-visual">
-      <div class="info-block">
-        <div class="big">WY</div>
-        <div class="small">Registered in the State of Wyoming, USA</div>
+    <form class="cf" onsubmit="handleSubmit(event)">
+      <div class="cf-row">
+        <div class="cf-field"><label for="name">Full name</label><input id="name" type="text" required></div>
+        <div class="cf-field"><label for="company">Company</label><input id="company" type="text"></div>
       </div>
-      <div class="info-block">
-        <div class="big">ITAD</div>
-        <div class="small">Full-spectrum IT asset disposition</div>
+      <div class="cf-row">
+        <div class="cf-field"><label for="email">Work email</label><input id="email" type="email" required></div>
+        <div class="cf-field"><label for="phone">Phone</label><input id="phone" type="tel"></div>
       </div>
-      <div class="info-block">
-        <div class="big">B2B</div>
-        <div class="small">Enterprise & SMB partnerships</div>
+      <div class="cf-field">
+        <label for="service">Service interested in</label>
+        <select id="service">
+          <option>IT Asset Disposition Program</option>
+          <option>Data Destruction Only</option>
+          <option>Asset Recovery / Remarketing</option>
+          <option>Logistics &amp; Secure Transport</option>
+          <option>Reporting / Compliance Audit Support</option>
+          <option>Other / Not sure</option>
+        </select>
       </div>
-      <div class="info-block">
-        <div class="big">ECO</div>
-        <div class="small">Sustainable circular economy focus</div>
+      <div class="cf-field">
+        <label for="message">Tell us about your equipment</label>
+        <textarea id="message" placeholder="Approximate quantity, types of devices, timeline, location..."></textarea>
       </div>
+      <button type="submit" class="btn btn-primary" style="justify-content:center;">Send Inquiry <i class="ph ph-arrow-right"></i></button>
+      <p class="cf-note">By submitting you agree to be contacted regarding your inquiry. We never share your information.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container final-cta-inner">
+    <span class="eyebrow" style="background:rgba(255,255,255,0.08); color:var(--green-02);">Ready to start</span>
+    <h2>Build a secure, certified ITAD program for your organization.</h2>
+    <p>From a single data center decommission to multi-year enterprise programs — we design disposition strategies that meet your security, sustainability, and ROI objectives.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary">Talk to Sales <i class="ph ph-arrow-right"></i></a>
+      <a href="#process" class="btn btn-outline">View Our Process</a>
     </div>
   </div>
 </section>
 
-<section id="services">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-eyebrow">What We Do</span>
-      <h2 class="section-title">End-to-End Hardware Lifecycle Services</h2>
-      <p class="section-desc">From pickup to final disposition, we manage the complete journey of your retired IT equipment with transparency and care.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">&#128190;</div>
-        <h3>Hardware Recycling</h3>
-        <p>R2 / e-Stewards aligned recycling for laptops, desktops, servers, networking gear, mobile devices, and accessories. Materials are recovered and reintroduced into the supply chain.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">&#128274;</div>
-        <h3>Secure Data Destruction</h3>
-        <p>NIST 800-88 compliant data sanitization, including software wiping, degaussing, and physical shredding. Each device receives a Certificate of Destruction.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">&#128295;</div>
-        <h3>Refurbishment & Resale</h3>
-        <p>Functional equipment is tested, cleaned, and refurbished to working condition, then resold through trusted secondary-market channels — returning value back to you.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">&#128229;</div>
-        <h3>IT Asset Disposition</h3>
-        <p>Comprehensive ITAD programs for enterprises: on-site pickup, asset tagging, serialized inventory, financial settlement reporting, and audit-ready documentation.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="process">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-eyebrow">How It Works</span>
-      <h2 class="section-title">A Simple, Transparent Process</h2>
-      <p class="section-desc">Four straightforward steps from initial contact to final reporting.</p>
-    </div>
-    <div class="process-wrapper">
-      <div class="process-steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h4>Inventory & Quote</h4>
-          <p>Submit a list of equipment or describe what you'd like to retire. We respond within 24 hours with a transparent quote and pickup plan.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h4>Secure Pickup</h4>
-          <p>We coordinate logistics nationwide. Equipment is tracked from the moment it leaves your facility under documented chain-of-custody.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h4>Process & Sanitize</h4>
-          <p>Devices are sorted, tested, and either refurbished or dismantled for recycling. All storage media undergoes certified data destruction.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <h4>Report & Settle</h4>
-          <p>You receive serialized inventory reports, Certificates of Destruction, environmental impact summaries, and any applicable value-recovery payment.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="why">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-eyebrow">Why Mirarth</span>
-      <h2 class="section-title">Built on Security, Sustainability, and Value</h2>
-    </div>
-    <div class="why-grid">
-      <div class="why-item">
-        <div class="icon-wrap">&#128737;</div>
-        <div>
-          <h4>Data Security First</h4>
-          <p>Every device is treated as if it holds the most sensitive data. Chain-of-custody, audit logs, and certificates included.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="icon-wrap">&#127757;</div>
-        <div>
-          <h4>Sustainable by Design</h4>
-          <p>Reuse before recycle. We extend the life of working hardware to reduce environmental impact and electronic waste.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="icon-wrap">&#128176;</div>
-        <div>
-          <h4>Maximum Value Recovery</h4>
-          <p>Our refurbishment and global resale network ensures you capture the highest possible return on your retired assets.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="icon-wrap">&#128221;</div>
-        <div>
-          <h4>Compliance & Reporting</h4>
-          <p>Detailed documentation supports your internal audits, HIPAA, GLBA, SOX, and environmental compliance requirements.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="icon-wrap">&#128640;</div>
-        <div>
-          <h4>Nationwide Logistics</h4>
-          <p>Pickup services across the contiguous United States with flexible scheduling for projects of any size.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="icon-wrap">&#128172;</div>
-        <div>
-          <h4>Responsive Support</h4>
-          <p>Dedicated point of contact from quote to final settlement. Real people, real fast responses.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="container">
-    <div class="contact-wrapper">
-      <div class="contact-info">
-        <span class="section-eyebrow">Get in Touch</span>
-        <h2>Ready to retire your IT assets responsibly?</h2>
-        <p>Tell us about your equipment and we'll send a no-obligation quote within one business day.</p>
-        <ul class="contact-list">
-          <li>
-            <div class="icon-wrap">&#9993;</div>
-            <div>
-              <div class="label">Email</div>
-              <div class="value"><a href="mailto:joysulen@hotmail.com">joysulen@hotmail.com</a></div>
-            </div>
-          </li>
-          <li>
-            <div class="icon-wrap">&#9742;</div>
-            <div>
-              <div class="label">Daytime Phone</div>
-              <div class="value"><a href="tel:+12065715406">(206) 571-5406</a></div>
-            </div>
-          </li>
-          <li>
-            <div class="icon-wrap">&#127968;</div>
-            <div>
-              <div class="label">Registered Office</div>
-              <div class="value">30 N Gould St, Ste R<br>Sheridan, WY 82801, USA</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <form onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="field">
-            <label for="name">Full Name</label>
-            <input id="name" type="text" required>
-          </div>
-          <div class="field">
-            <label for="company">Company</label>
-            <input id="company" type="text">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" type="email" required>
-          </div>
-          <div class="field">
-            <label for="phone">Phone</label>
-            <input id="phone" type="tel">
-          </div>
-        </div>
-        <div class="field">
-          <label for="service">Service Interested In</label>
-          <select id="service">
-            <option>Hardware Recycling</option>
-            <option>Data Destruction</option>
-            <option>Refurbishment & Resale</option>
-            <option>Full ITAD Program</option>
-            <option>Other / Not Sure</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="message">Tell us about your equipment</label>
-          <textarea id="message" placeholder="Approximate quantity, types of devices, timeline, location..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="justify-content: center;">Send Inquiry &rarr;</button>
-        <p class="form-note">By submitting you agree to be contacted regarding your inquiry. We never share your information.</p>
-      </form>
-    </div>
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo">
-          <span class="logo-mark">M</span>
+        <a href="#" class="brand">
+          <span class="brand-mark">M</span>
           <span>Mirarth IT Asset</span>
-        </div>
-        <p>Wyoming-based IT asset disposition and electronics recycling services. Secure. Sustainable. Profitable.</p>
+        </a>
+        <p>Wyoming-based IT asset disposition, certified data destruction, electronics recycling, and remarketing. Secure. Sustainable. Verified.</p>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
         <ul>
-          <li><a href="#services">Hardware Recycling</a></li>
+          <li><a href="#services">ITAD Program</a></li>
           <li><a href="#services">Data Destruction</a></li>
-          <li><a href="#services">Refurbishment</a></li>
-          <li><a href="#services">ITAD Programs</a></li>
+          <li><a href="#services">Asset Recovery</a></li>
+          <li><a href="#services">Secure Logistics</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Company</h5>
+        <h5>Platform</h5>
         <ul>
-          <li><a href="#about">About</a></li>
+          <li><a href="#platform">Client Portal</a></li>
           <li><a href="#process">Process</a></li>
-          <li><a href="#why">Why Us</a></li>
+          <li><a href="#industries">Industries</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="#insights">Insights</a></li>
+          <li><a href="#insights">Case Studies</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -857,30 +1370,25 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-
+  if (toggle) {
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  }
   function handleSubmit(e) {
     e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const company = document.getElementById('company').value;
-    const phone = document.getElementById('phone').value;
-    const service = document.getElementById('service').value;
-    const message = document.getElementById('message').value;
-    const subject = encodeURIComponent('Inquiry from ' + name + ' - ' + service);
+    const v = id => document.getElementById(id).value;
+    const subj = encodeURIComponent('Inquiry from ' + v('name') + ' - ' + v('service'));
     const body = encodeURIComponent(
-      'Name: ' + name + '\n' +
-      'Company: ' + company + '\n' +
-      'Email: ' + email + '\n' +
-      'Phone: ' + phone + '\n' +
-      'Service: ' + service + '\n\n' +
-      'Message:\n' + message
+      'Name: ' + v('name') + '\n' +
+      'Company: ' + v('company') + '\n' +
+      'Email: ' + v('email') + '\n' +
+      'Phone: ' + v('phone') + '\n' +
+      'Service: ' + v('service') + '\n\n' +
+      'Message:\n' + v('message')
     );
-    window.location.href = 'mailto:joysulen@hotmail.com?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:joysulen@hotmail.com?subject=' + subj + '&body=' + body;
   }
 </script>
 

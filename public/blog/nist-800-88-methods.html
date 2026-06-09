@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A practical walk-through of the three sanitization categories defined by NIST SP 800-88 Rev. 1 — Clear, Purge, and Destroy — and how to choose between them.">
+<meta name="description" content="A practical walk-through of the three sanitization categories defined by NIST SP 800-88 Rev. 1 �?Clear, Purge, and Destroy �?and how to choose between them.">
 <title>NIST SP 800-88r1 Sanitization Methods Explained | Mirarth IT Asset</title>
 <link rel="preconnect" href="https://api.fontshare.com">
 <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@300,400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="/assets/icon-base.css">
 <link rel="stylesheet" href="/assets/article.css">
 </head>
 <body>
 
 <div class="topbar">
-  Now accepting Q1 2026 enterprise ITAD program bookings. <a href="/#contact">Reserve capacity →</a>
+  Now accepting Q1 2026 enterprise ITAD program bookings. <a href="/#contact">Reserve capacity �?/a>
 </div>
 
 <nav class="nav">
@@ -31,20 +31,20 @@
     </ul>
     <div class="nav-actions">
       <a href="/#contact" class="btn btn-outline">Sign In</a>
-      <a href="/#contact" class="btn btn-primary">Talk to Sales <i class="ph ph-arrow-right"></i></a>
-      <button class="nav-toggle" id="navToggle"><i class="ph ph-list"></i></button>
+      <a href="/#contact" class="btn btn-primary">Talk to Sales <svg class="svg-icon"><use href="/assets/icons.svg#ic-arrow-right"></use></svg></a>
+      <button class="nav-toggle" id="navToggle"><svg class="svg-icon"><use href="/assets/icons.svg#ic-list"></use></svg></button>
     </div>
   </div>
 </nav>
 
 <section class="article-hero">
   <div class="container-narrow">
-    <a href="/#insights" class="breadcrumb"><i class="ph ph-arrow-left"></i> Back to Insights</a>
+    <a href="/#insights" class="breadcrumb"><svg class="svg-icon"><use href="/assets/icons.svg#ic-arrow-left"></use></svg> Back to Insights</a>
     <span class="eyebrow">Standards</span>
     <h1>NIST SP 800-88r1 Explained: Clear, Purge, and Destroy</h1>
     <p class="lede">Every conversation about data sanitization eventually circles back to the same federal publication. Here is a plain-language walk-through of the three categories NIST defines, and the framework for choosing the right one without overspending or under-protecting.</p>
     <div class="article-meta">
-      <span><i class="ph ph-buildings" style="vertical-align:middle;"></i> Mirarth IT Asset</span>
+      <span><svg class="svg-icon" style="vertical-align:middle;margin-right:6px;"><use href="/assets/icons.svg#ic-buildings"></use></svg>></i> Mirarth IT Asset</span>
       <span class="dot">·</span>
       <span>10 min read</span>
       <span class="dot">·</span>
@@ -54,7 +54,7 @@
 </section>
 
 <div class="article-cover">
-  <div class="cover-inner dark"><i class="ph ph-eraser"></i></div>
+  <div class="cover-inner dark"><svg class="svg-icon"><use href="/assets/icons.svg#ic-eraser"></use></svg></div>
 </div>
 
 <div class="container">
@@ -92,24 +92,24 @@
           <tr>
             <td><strong>Clear</strong></td>
             <td>Keyboard-level data recovery (simple software tools)</td>
-            <td>Yes — within trusted environments</td>
+            <td>Yes �?within trusted environments</td>
           </tr>
           <tr>
             <td><strong>Purge</strong></td>
             <td>Laboratory recovery attempts with specialized tools</td>
-            <td>Yes — including resale or external transfer</td>
+            <td>Yes �?including resale or external transfer</td>
           </tr>
           <tr>
             <td><strong>Destroy</strong></td>
             <td>Any future recovery, by any technique</td>
-            <td>No — the media is rendered unusable</td>
+            <td>No �?the media is rendered unusable</td>
           </tr>
         </tbody>
       </table>
       <p>The categories describe the <em>outcome</em>, not a specific technique. Several techniques may satisfy each category depending on the type of media. We will look at each in turn.</p>
 
       <h2 id="clear">Clear: a logical reset</h2>
-      <p>The Clear category covers methods that protect against straightforward data recovery using standard system tools. The classic example is overwriting every logical sector of a drive with a fixed pattern. After a successful Clear, no normal file recovery utility can reconstruct the original data — but a well-equipped forensics lab might still extract residual signals from the underlying media.</p>
+      <p>The Clear category covers methods that protect against straightforward data recovery using standard system tools. The classic example is overwriting every logical sector of a drive with a fixed pattern. After a successful Clear, no normal file recovery utility can reconstruct the original data �?but a well-equipped forensics lab might still extract residual signals from the underlying media.</p>
       <p>Clear is appropriate when:</p>
       <ul>
         <li>The data is non-sensitive or already public.</li>
@@ -122,18 +122,18 @@
       <p>The Purge category covers methods that render data infeasible to recover even with state-of-the-art laboratory techniques. This is the level required when a device is leaving organizational control but retains residual resale value.</p>
       <p>The specific Purge techniques vary by media type:</p>
       <h3>For hard disk drives</h3>
-      <p>Degaussing — exposure to a strong magnetic field that disrupts the magnetic domains on the platters — is a NIST-recognized Purge technique. A successful degauss renders the drive both unrecoverable and unusable, so this method effectively crosses over into Destroy in practice. The drive's ATA Secure Erase command is also recognized when supported and verified.</p>
+      <p>Degaussing �?exposure to a strong magnetic field that disrupts the magnetic domains on the platters �?is a NIST-recognized Purge technique. A successful degauss renders the drive both unrecoverable and unusable, so this method effectively crosses over into Destroy in practice. The drive's ATA Secure Erase command is also recognized when supported and verified.</p>
       <h3>For SSDs and NVMe drives</h3>
-      <p>The drive's built-in sanitize command — issued via ATA Sanitize, NVMe Format, or vendor utility — is the preferred Purge technique because it can reach the over-provisioned and reserved cells that a host-issued overwrite cannot touch. Cryptographic Erase, where the drive's internal media encryption key is destroyed, is also accepted as Purge when the drive is a self-encrypting drive and the operation is properly verified.</p>
+      <p>The drive's built-in sanitize command �?issued via ATA Sanitize, NVMe Format, or vendor utility �?is the preferred Purge technique because it can reach the over-provisioned and reserved cells that a host-issued overwrite cannot touch. Cryptographic Erase, where the drive's internal media encryption key is destroyed, is also accepted as Purge when the drive is a self-encrypting drive and the operation is properly verified.</p>
       <h3>For mobile devices</h3>
       <p>Vendor-supplied factory reset operations that destroy the device's encryption key are recognized as Cryptographic Erase, satisfying Purge for modern iOS and Android devices that encrypt by default.</p>
       <div class="callout">
         <strong>About Cryptographic Erase</strong>
-        Cryptographic Erase is fast, scalable, and elegant — but only as strong as the encryption it relies on. It requires that the data was encrypted from the start with a well-implemented scheme, and that the key destruction itself is verifiable. It is not a magic shortcut you can apply to a drive that was never encrypted.
+        Cryptographic Erase is fast, scalable, and elegant �?but only as strong as the encryption it relies on. It requires that the data was encrypted from the start with a well-implemented scheme, and that the key destruction itself is verifiable. It is not a magic shortcut you can apply to a drive that was never encrypted.
       </div>
 
       <h2 id="destroy">Destroy: physical irreversibility</h2>
-      <p>The Destroy category covers methods that render the storage media itself unrecoverable — and unusable. Disintegration, pulverization, melting, incineration, and shredding all fall here. The media physically cannot be read again because, structurally, there is no media left to read.</p>
+      <p>The Destroy category covers methods that render the storage media itself unrecoverable �?and unusable. Disintegration, pulverization, melting, incineration, and shredding all fall here. The media physically cannot be read again because, structurally, there is no media left to read.</p>
       <p>Destroy is appropriate when:</p>
       <ul>
         <li>The data is highly sensitive and the risk of any recovery is unacceptable.</li>
@@ -150,7 +150,7 @@
         <li><strong>Is the data moderate-to-high sensitivity, or is the device leaving your control with residual value?</strong> Purge is required.</li>
         <li><strong>Is the data highly sensitive, or is the device end-of-life with no resale plan?</strong> Destroy.</li>
       </ol>
-      <p>The temptation in many organizations is to default to Destroy for everything, on the theory that more is always better. This is sometimes the right answer, but it forfeits the residual value of working hardware and produces avoidable e-waste. Purge — properly executed and verified — provides equivalent confidence for sensitive data while preserving the option to remarket the device.</p>
+      <p>The temptation in many organizations is to default to Destroy for everything, on the theory that more is always better. This is sometimes the right answer, but it forfeits the residual value of working hardware and produces avoidable e-waste. Purge �?properly executed and verified �?provides equivalent confidence for sensitive data while preserving the option to remarket the device.</p>
 
       <h2 id="verification">Verification and documentation</h2>
       <p>NIST 800-88r1 is explicit that sanitization without verification is not sanitization. For each device sanitized, you should be able to produce:</p>
@@ -160,7 +160,7 @@
         <li>The result of the verification step (sampling, full read-back, or vendor command confirmation).</li>
         <li>The date, location, and person or system responsible.</li>
       </ul>
-      <p>This is what the Certificate of Destruction in a serious ITAD program is documenting. It is not a marketing flourish — it is the audit evidence that your sanitization actually happened, on the specific drive whose serial number is on the document.</p>
+      <p>This is what the Certificate of Destruction in a serious ITAD program is documenting. It is not a marketing flourish �?it is the audit evidence that your sanitization actually happened, on the specific drive whose serial number is on the document.</p>
 
       <h2 id="common-mistakes">Common mistakes</h2>
       <p>A few patterns we see in conversations with new clients:</p>
@@ -169,7 +169,7 @@
       <h3>Trusting a quick format</h3>
       <p>A standard operating system format clears the file system index but leaves the underlying data in place. It does not satisfy any NIST category.</p>
       <h3>Skipping verification</h3>
-      <p>"We ran the tool" is not a sanitization record. The tool can fail silently. Verification — even sampled — is the difference between sanitization and hope.</p>
+      <p>"We ran the tool" is not a sanitization record. The tool can fail silently. Verification �?even sampled �?is the difference between sanitization and hope.</p>
       <h3>Treating destruction as automatically more secure than Purge</h3>
       <p>A poorly-controlled shredding process performed without chain-of-custody is less secure than a verified Cryptographic Erase performed under audit. The category matters less than the discipline.</p>
 
@@ -191,27 +191,27 @@
     </div>
     <div class="related-grid">
       <a href="/blog/r2-certification.html" class="related-card">
-        <div class="related-cover"><i class="ph ph-certificate"></i></div>
+        <div class="related-cover"><svg class="svg-icon"><use href="/assets/icons.svg#ic-certificate"></use></svg></div>
         <div class="related-body">
           <div class="related-cat">Compliance</div>
           <h4>Understanding R2v3 certification and why it matters</h4>
-          <span class="related-link">Read article <i class="ph ph-arrow-right"></i></span>
+          <span class="related-link">Read article <svg class="svg-icon"><use href="/assets/icons.svg#ic-arrow-right"></use></svg></span>
         </div>
       </a>
       <a href="/blog/where-data-is-stored.html" class="related-card">
-        <div class="related-cover alt-1"><i class="ph ph-hard-drives"></i></div>
+        <div class="related-cover alt-1"><svg class="svg-icon"><use href="/assets/icons.svg#ic-hard-drives"></use></svg></div>
         <div class="related-body">
           <div class="related-cat">Data Security</div>
           <h4>Where your data actually lives: volatile vs persistent memory</h4>
-          <span class="related-link">Read article <i class="ph ph-arrow-right"></i></span>
+          <span class="related-link">Read article <svg class="svg-icon"><use href="/assets/icons.svg#ic-arrow-right"></use></svg></span>
         </div>
       </a>
       <a href="/#contact" class="related-card">
-        <div class="related-cover alt-2"><i class="ph ph-chat-circle-text"></i></div>
+        <div class="related-cover alt-2"><svg class="svg-icon"><use href="/assets/icons.svg#ic-chat-circle-text"></use></svg></div>
         <div class="related-body">
           <div class="related-cat">Get Started</div>
           <h4>Design a certified ITAD program for your organization</h4>
-          <span class="related-link">Talk to sales <i class="ph ph-arrow-right"></i></span>
+          <span class="related-link">Talk to sales <svg class="svg-icon"><use href="/assets/icons.svg#ic-arrow-right"></use></svg></span>
         </div>
       </a>
     </div>
@@ -224,7 +224,7 @@
     <h2>Put these insights into action.</h2>
     <p>Discuss how Mirarth's certified processes can protect your data, satisfy your auditors, and streamline your IT asset disposition.</p>
     <div class="cta-actions">
-      <a href="/#contact" class="btn btn-primary">Schedule a Consultation <i class="ph ph-arrow-right"></i></a>
+      <a href="/#contact" class="btn btn-primary">Schedule a Consultation <svg class="svg-icon"><use href="/assets/icons.svg#ic-arrow-right"></use></svg></a>
       <a href="/#process" class="btn btn-outline">View Our Process</a>
     </div>
   </div>
